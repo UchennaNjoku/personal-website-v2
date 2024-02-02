@@ -22,7 +22,7 @@ export default function Home() {
       <section className="z-0 flex flex-col m-auto justify-center h-screen max-w-5xl text-black -pt-[120px]">
         <div >
 
-          <h1 className="text-8xl m-0">Hi,<span role="img" className='waveanim' aria-label="sheep">👋🏼</span> I'm <span className="line-through"><b>your next software developer,</b></span> <b>Uchenna Njoku</b></h1>
+          <h1 className="text-8xl m-0">Hi,<span role="img" className='waveanim' aria-label="sheep">👋🏼</span> I&apos;m <span className="line-through"><b>your next software developer,</b></span> <b>Uchenna Njoku</b></h1>
           <h3 className="text-2xl m-0">specializing in crafting <b>unique digital experiences. </b></h3>
         
         </div>
@@ -32,7 +32,7 @@ export default function Home() {
         
         <div className="flex flex-row">
           <div className="flex flex-col space-y-5">
-            <h2 className="text-5xl m-0">I'm a software engineer based in Daytona Beach, Florida</h2>
+            <h2 className="text-5xl m-0">I&apos;m a software engineer based in Daytona Beach, Florida</h2>
             <p className="text-2xl m-0">I have a knack for full-stack development, clean design patterns, human-computer interactions, and everything in between. I&apos;m quietly confident, naturally curious, and perpetually improving my chops one problem at a time!</p>
             <p className="text-2xl font-medium m-0">previously worked at:</p>
             <ul className="text-2xl m-0">
