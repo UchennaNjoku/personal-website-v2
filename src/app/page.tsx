@@ -33,7 +33,7 @@ export default function Home() {
         <div className="flex flex-row">
           <div className="flex flex-col space-y-5">
             <h2 className="text-5xl m-0">I'm a software engineer based in Daytona Beach, Florida</h2>
-            <p className="text-2xl m-0">I have a knack for full-stack development, clean design patterns, human-computer interactions, and everything in between. I'm quietly confident, naturally curious, and perpetually improving my chops one problem at a time!</p>
+            <p className="text-2xl m-0">I have a knack for full-stack development, clean design patterns, human-computer interactions, and everything in between. I&apos;m quietly confident, naturally curious, and perpetually improving my chops one problem at a time!</p>
             <p className="text-2xl font-medium m-0">previously worked at:</p>
             <ul className="text-2xl m-0">
               <li>🚀 <a href="https://www.amazon.com/" target="_blank">Amazon</a></li>
