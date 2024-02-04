@@ -2,10 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import GMLogo from "./gm.png";
-import Munchies_Desktop from "./Munchies_Desktop.png";
+import Munchies_Tablet from "./Munchies_Tablet.png";
 import ThrivMockup from "./ThrivMockup.png";
-import  SentinelStaffing from "./SentinelStaffing.png";
+import  Sentinel_Desktop from "./Sentinel_Desktop.png";
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -155,29 +156,15 @@ export default function Home() {
 
       <section className="flex flex-col m-auto justify-center  text-black">
         <div className="w-full max-w-5xl m-auto">
-          <h1 className="text-5xl">...some stuff I've worked on 👨🏽‍💻</h1>
+          <h1 className="text-5xl">...some stuff I&apos;ve worked on 👨🏽‍💻</h1>
         </div>
        
-        <div className="flex flex-row max-w-5xl m-auto justify-between">
-          <div className="mt-32 w-full">
-            <h1 className="text-gray-300 font-black text-7xl">01</h1>
-            <h1 className="text-4xl text-gray-800">Munchies Recipes</h1>
-            <p className="text-xl text-gray-400 font-regular w-4/5">A recipe app that helps you find the perfect recipe for any meal</p>
-            <p className="text-xl text-gray-400 font-regular w-4/5">- Developed using React and TailwindCSS<br/>- Leveraging the Spoonacular API to get results</p>
-            <Button variant="outline" className="mt-5">View Project</Button>
-            <Button variant="outline" className="mt-5 ml-3">See Github</Button>
-          </div>
-          <div className="mt-16">
-            <Image src={Munchies_Desktop} className="" width={1000} alt="Munchies"/>
-          </div>
-        </div>
-        
         <div className="flex flex-row max-w-5xl m-auto justify-between">
           <div className="mt-16">
             <Image src={ThrivMockup} className="" width={1000} alt="Munchies"/>
           </div>
           <div className="mt-32 w-full flex flex-col items-end">
-            <h1 className="text-gray-300 font-black text-7xl">02</h1>
+            <h1 className="text-gray-300 font-black text-7xl">01</h1>
             <h1 className="text-5xl text-gray-800">Thriv</h1>
             <p className="text-xl text-gray-400 font-regular w-4/5">your personal fitness companion designed to help you dial in your fitness goals.</p>
             <p className="text-xl text-gray-400 font-regular w-4/5">in development using React Native and Firebase<br/></p>
@@ -188,21 +175,45 @@ export default function Home() {
           </div>
         </div>
 
+
         <div className="flex flex-row max-w-5xl m-auto justify-between">
           <div className="mt-32 w-full">
-            <h1 className="text-gray-300 font-black text-7xl">03</h1>
-            <h1 className="text-5xl text-gray-800">Sentinel Staffing</h1>
-            <p className="text-xl text-gray-400 font-regular w-4/5 mt-3">Redesigned the web application portal for Sentinel Staffing Solutions. Developed using React and TailwindCSS</p>
+            <h1 className="text-gray-300 font-black text-7xl">02</h1>
+            <h1 className="text-4xl text-gray-800">Munchies Recipes</h1>
+            <p className="text-xl text-gray-400 font-regular w-4/5">A recipe web application that helps you find the perfect recipe for any meal</p>
+            <p className="text-xl text-gray-400 font-regular w-4/5">- Developed using React and TailwindCSS<br/>- Leveraging the Spoonacular API to get results</p>
             <Button variant="outline" className="mt-5">View Project</Button>
             <Button variant="outline" className="mt-5 ml-3">See Github</Button>
           </div>
-          <div className="mt-20">
-            <Image src={SentinelStaffing} className="" width={1200} alt="Munchies"/>
+          <div className="mt-16">
+            <Image src={Munchies_Tablet} className="" width={1000} alt="Munchies"/>
+          </div>
+        </div>
+        
+        <div className="flex flex-row max-w-5xl m-auto justify-between">
+          <div className="mt-16">
+            <Image src={Sentinel_Desktop} className="" width={900} alt="Munchies"/>
+          </div>
+          <div className="mt-32 w-full flex flex-col items-end">
+          <h1 className="text-gray-300 font-black text-7xl">03</h1>
+            <h1 className="text-5xl text-gray-800">Sentinel Staffing</h1>
+            <p className="text-xl text-gray-400 font-regular w-4/5 mt-3">Redesigned the web application portal for Sentinel Staffing Solutions. Developed using React and TailwindCSS</p>
+            <div className="flex flex-row justify-start w-4/5">
+            <Button variant="outline" className="mt-5">View Project</Button>
+            <Button variant="outline" className="mt-5 ml-3">See Github</Button>
+            </div>
           </div>
         </div>
         
 
+        
+        
+
       </section>
+
+      <Footer />
+
+
     </main> 
   );
 }

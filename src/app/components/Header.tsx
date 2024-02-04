@@ -12,7 +12,7 @@ const Header: React.FC = () => {
                     <Link href="/contact" className='text-black no-underline border-b border-transparent transition-all hover:border-current'>contact</Link>
                 </div>
                 <div className='flex-1 flex justify-end'> {/* Right-aligned content */}
-                    <Link href="/" className='border-2 pointer hover:bg-gray-600 hover:text-white transition-all border-gray-800 rounded-md px-2 py-1 text-gray-800'>get my resume</Link>
+                    <Link href={"public/resume.pdf"} locale={false} target="_blank" rel="noopener noreferrer" className='border-2 pointer hover:bg-gray-600 hover:text-white transition-all border-gray-800 rounded-md px-2 py-1 text-gray-800'>get my resume</Link>
                 </div>
             </div>
         </header>
