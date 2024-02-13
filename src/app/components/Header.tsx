@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Header: React.FC = () => {
     return (
-        <header className='bg-white max-w-full sticky top-0 z-10'>
+        <header className='bg-white max-w-full'>
             <div className="flex w-screen justify-between items-center m-auto max-w-8xl p-10">
                 <div className="flex-1"></div> {/* Invisible spacer */}
                 <div className="flex flex-grow justify-center items-center space-x-10"> {/* Centered content without forcing width */}
