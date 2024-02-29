@@ -19,7 +19,7 @@ const SPRING_OPTIONS: SpringOptions = {
 const UNSTICK_THRESHOLD_DISTANCE = 120;
 
 const SHADOW_SIZE = 40;
-const SHADOW_SIZE_ON_HOVER = 100;
+const SHADOW_SIZE_ON_HOVER = 68;
 
 const getDistanceFromRect = (rect: DOMRect, x: number, y: number) => {
   const { top, left, width, height } = rect;
@@ -152,8 +152,9 @@ export default function StickyCursor() {
           scaleX: pointerShadowScale.x,
           scaleY: pointerShadowScale.y,
           rotate: pointerShadowAngle,
+          pointerEvents: "none"
         }}
-        className="w-10 h-10 fixed bg-black rounded-full"
+        className="w-10 h-10 z-10 fixed bg-black rounded-full"
         animate={{
           width: cursorSize,
           height: cursorSize,
@@ -161,8 +162,8 @@ export default function StickyCursor() {
       />
 
       <motion.div
-        style={{ left: mouse.x, top: mouse.y }}
-        className="w-2 h-2 fixed bg-white border-black -translate-x-1/2 -translate-y-1/2 border rounded-full"
+        style={{ left: mouse.x, top: mouse.y, pointerEvents: "none" }}
+        className="w-2 h-2 z-10 fixed bg-white border-black -translate-x-1/2 -translate-y-1/2 border rounded-full"
       />
     </>
   );
