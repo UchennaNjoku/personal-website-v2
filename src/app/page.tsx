@@ -5,7 +5,7 @@ import Link from "next/link";
 // import Footer from "./components/Footer";
 import GMLogo from "./gm.png";
 import Munchies_Tablet from "./Munchies_Tablet.png";
-import Cisco from "./Cisco.png";
+import Cisco from "./cisco.png";
 import ThrivMockup from "./ThrivMockup.png";
 import  Sentinel_Desktop from "./Sentinel_Desktop.png";
 import { Button } from "@/components/ui/button"
