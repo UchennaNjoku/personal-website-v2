@@ -36,8 +36,34 @@ const getDistanceFromRect = (rect: DOMRect, x: number, y: number) => {
 export default function StickyCursor() {
   const [isHovered, setIsHovered] = React.useState(false);
   const hoveredElementRef = React.useRef<HTMLElement | null>(null);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  // Check if the device is mobile or touch-based
+  useEffect(() => {
+    // Function to check if the device is mobile based on screen size and touch capability
+    const checkMobile = () => {
+      return window.innerWidth <= 768 || ('ontouchstart' in window);
+    };
+    
+    // Set initial state
+    setIsMobile(checkMobile());
+    
+    // Add listener for window resize to update mobile detection
+    const handleResize = () => {
+      setIsMobile(checkMobile());
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
+    // If mobile, don't set up cursor effects
+    if (isMobile) return;
+    
     const manageMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
 
@@ -108,6 +134,7 @@ export default function StickyCursor() {
       el.addEventListener("mouseenter", manageMouseOver);
     });
 
+    // Hide default cursor
     document.body.style.setProperty("cursor", "none");
 
     return () => {
@@ -119,7 +146,7 @@ export default function StickyCursor() {
         });
       document.body.style.setProperty("cursor", null);
     };
-  }, [isHovered]);
+  }, [isHovered, isMobile]);
 
   const mouse = { x: useMotionValue(0), y: useMotionValue(0) };
   const pointerShadow = { x: useMotionValue(0), y: useMotionValue(0) };
@@ -131,6 +158,11 @@ export default function StickyCursor() {
   const pointerShadowAngle = useMotionValue(`0rad`);
 
   const cursorSize = isHovered ? SHADOW_SIZE_ON_HOVER : SHADOW_SIZE;
+
+  // If mobile, don't render the custom cursor
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <>
