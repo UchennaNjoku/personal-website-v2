@@ -193,7 +193,7 @@ export default function Home() {
               <Link href={"https://thriv-app.vercel.app/"}> View Project</Link>
               </Button>
             <Button data-sticky variant="outline" className="mt-5 ml-3 h-fit w-fit">
-              <Link href={"https://github.com/UchennaNjoku/Thriv"}>See Github</Link>
+             <Link href={"https://github.com/UchennaNjoku/Thriv"}>See Github</Link>
             </Button>
             </div>
           </div>
