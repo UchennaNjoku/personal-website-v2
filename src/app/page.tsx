@@ -209,7 +209,7 @@ export default function Home() {
                               <span className="ml-auto text-sm text-gray-500">January 2025 - April 2025</span>
                             </h2>
                             <div className="text-sm md:text-lg px-4 md:px-16 mt-4 space-y-2">
-                              <p>Worked with the Maintenance Window Service team to build resilient systems for scheduled network maintenance across Cisco's global infrastructure.</p>
+                              <p>Worked with the Maintenance Window Service team to build resilient systems for scheduled network maintenance across Cisco&apos;s global infrastructure.</p>
                               <p>Spearheaded the refactoring of data ingestion systems to future-proof workflows and simplify modification processes as part of broader migration efforts within the organization.</p>
                               <p>Implemented improved error handling and monitoring for critical maintenance window operations, resulting in 15% reduction in failed maintenance events.</p>
                               <p>Collaborated with cross-functional teams to design flexible APIs that accommodate evolving data structures while maintaining backward compatibility.</p>
