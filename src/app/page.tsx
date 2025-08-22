@@ -247,8 +247,8 @@ export default function Home() {
             <div className="flex flex-col space-y-8">
               {/* About me - smaller, less prominent */}
               <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl m-0 mb-4">I&apos;m a software engineer based in Daytona Beach, Florida</h2>
-                <p className="text-base md:text-lg lg:text-xl m-0 opacity-80">I have a knack for full-stack development, clean design patterns, human-computer interactions, and everything in between. I&apos;m quietly confident, naturally curious, and perpetually improving my chops one problem at a time!</p>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl m-0 mb-4">I&apos;m a software engineer driven by curiosity, precision, and a love for solving complex problems.</h2>
+                <p className="text-base md:text-lg lg:text-xl m-0 opacity-80">I enjoy applying clean design patterns to complex problems, from web systems to financial modeling. Driven by curiosity, I&apos;m always refining my craft and building elegant solutions.</p>
               </div>
 
               {/* Work experience - more prominent */}
