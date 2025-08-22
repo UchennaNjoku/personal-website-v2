@@ -146,7 +146,7 @@ export default function StickyCursor() {
         });
       document.body.style.setProperty("cursor", null);
     };
-  }, [isHovered, isMobile]);
+  }, [isHovered, isMobile, mouse.x, mouse.y, pointerShadow.x, pointerShadow.y, pointerShadowAngle, pointerShadowScale.x, pointerShadowScale.y]);
 
   const mouse = { x: useMotionValue(0), y: useMotionValue(0) };
   const pointerShadow = { x: useMotionValue(0), y: useMotionValue(0) };

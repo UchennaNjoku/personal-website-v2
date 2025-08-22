@@ -454,10 +454,10 @@ export default function Home() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#433E0E] to-[#81901D] bg-clip-text text-transparent">My Work</h1>
               <div className="flex items-center space-x-2">
                 <div className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-[#433E0E]' : 'bg-[#433E0E]'} animate-pulse`}></div>
-                <span className={`text-sm ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>projects I've built</span>
+                <span className={`text-sm ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>projects I&apos;ve built</span>
               </div>
             </div>
-            <p className="text-lg md:text-xl opacity-80">Some stuff I've worked on 👨🏽‍💻</p>
+            <p className="text-lg md:text-xl opacity-80">Some stuff I&apos;ve worked on 👨🏽‍💻</p>
           </div>
 
           <div className="flex flex-col md:flex-row max-w-5xl m-auto justify-between md:mt-8 gap-4">
@@ -520,7 +520,7 @@ export default function Home() {
 
           {/* Scroll Indicator to Contact */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>let's connect</p>
+            <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>let&apos;s connect</p>
             <div className="scroll-indicator">
               <svg
                 width="24"
