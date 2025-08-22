@@ -248,7 +248,7 @@ export default function Home() {
               {/* About me - smaller, less prominent */}
               <div className="mb-8">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl m-0 mb-4">I&apos;m a software engineer driven by curiosity, precision, and a love for solving complex problems.</h2>
-                <p className="text-base md:text-lg lg:text-xl m-0 opacity-80">I enjoy applying clean design patterns to complex problems, from web systems to financial modeling. Driven by curiosity, I&apos;m always refining my craft and building elegant solutions.</p>
+                <p className="text-base md:text-lg lg:text-xl m-0 opacity-80">I enjoy applying clean design patterns to complex problems</p>
               </div>
 
               {/* Work experience - more prominent */}

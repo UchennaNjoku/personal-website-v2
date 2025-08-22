@@ -52,7 +52,7 @@ export default function StickyCursor() {
   useEffect(() => {
     // Function to check if the device is mobile based on screen size and touch capability
     const checkMobile = () => {
-      return window.innerWidth <= 768 || 
+      return window.innerWidth <= 1024 || // Increased threshold for tablets
              ('ontouchstart' in window) || 
              (navigator.maxTouchPoints > 0) ||
              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
