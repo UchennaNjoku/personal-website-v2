@@ -38,23 +38,33 @@ export default function StickyCursor() {
   const hoveredElementRef = React.useRef<HTMLElement | null>(null);
   const [isMobile, setIsMobile] = React.useState(false);
 
+  // Motion values - declared early to avoid hoisting issues
+  const mouse = { x: useMotionValue(0), y: useMotionValue(0) };
+  const pointerShadow = { x: useMotionValue(0), y: useMotionValue(0) };
+  const pointerShadowScale = { x: useMotionValue(1), y: useMotionValue(1) };
+  const smoothPointerShadow = {
+    x: useSpring(pointerShadow.x, SPRING_OPTIONS),
+    y: useSpring(pointerShadow.y, SPRING_OPTIONS),
+  };
+  const pointerShadowAngle = useMotionValue(`0rad`);
+
   // Check if the device is mobile or touch-based
   useEffect(() => {
     // Function to check if the device is mobile based on screen size and touch capability
     const checkMobile = () => {
       return window.innerWidth <= 768 || ('ontouchstart' in window);
     };
-    
+
     // Set initial state
     setIsMobile(checkMobile());
-    
+
     // Add listener for window resize to update mobile detection
     const handleResize = () => {
       setIsMobile(checkMobile());
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -63,7 +73,7 @@ export default function StickyCursor() {
   useEffect(() => {
     // If mobile, don't set up cursor effects
     if (isMobile) return;
-    
+
     const manageMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
 
@@ -146,16 +156,7 @@ export default function StickyCursor() {
         });
       document.body.style.setProperty("cursor", null);
     };
-  }, [isHovered, isMobile, mouse.x, mouse.y, pointerShadow.x, pointerShadow.y, pointerShadowAngle, pointerShadowScale.x, pointerShadowScale.y]);
-
-  const mouse = { x: useMotionValue(0), y: useMotionValue(0) };
-  const pointerShadow = { x: useMotionValue(0), y: useMotionValue(0) };
-  const pointerShadowScale = { x: useMotionValue(1), y: useMotionValue(1) };
-  const smoothPointerShadow = {
-    x: useSpring(pointerShadow.x, SPRING_OPTIONS),
-    y: useSpring(pointerShadow.y, SPRING_OPTIONS),
-  };
-  const pointerShadowAngle = useMotionValue(`0rad`);
+  }, [isHovered, isMobile]);
 
   const cursorSize = isHovered ? SHADOW_SIZE_ON_HOVER : SHADOW_SIZE;
 
