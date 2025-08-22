@@ -83,7 +83,7 @@ export default function Home() {
               {/* Dark Mode Toggle */}
               <button
                 onClick={toggleDarkMode}
-                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 mr-4 hover:scale-110 transition-all duration-200`}
+                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 mr-4 hover:scale-110 transition-all duration-200 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center`}
                 aria-label="Toggle Dark Mode"
               >
                 {isDarkMode ? (
@@ -106,7 +106,7 @@ export default function Home() {
                     mobileMenu.classList.toggle('hidden');
                   }
                 }}
-                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 md:hidden`}
+                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 md:hidden touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center`}
                 aria-label="Menu"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -120,7 +120,7 @@ export default function Home() {
               <button data-sticky onClick={() => scrollToRef(contactRef)} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} data-sticky font-normal hover:font-medium no-underline border-b border-transparent transition-all hover:border-current`}>/contact</button>
             </div>
             <div className='flex-1 flex justify-end'>
-              <Link data-sticky href={"/resume.pdf"} locale={false} target="_blank" rel="noopener noreferrer" className={`h-fit w-fit border-2 pointer hover:bg-[#433E0E] hover:text-[#EAEAC2] transition-all border-[#433E0E] rounded-md px-2 py-1 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#433E0E]'}`}>get my resume</Link>
+              <Link href={"/resume.pdf"} locale={false} target="_blank" rel="noopener noreferrer" className={`h-fit w-fit border-2 hover:bg-[#433E0E] hover:text-[#EAEAC2] transition-all border-[#433E0E] rounded-md px-3 py-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#433E0E]'} cursor-pointer touch-manipulation min-h-[44px] flex items-center`}>get my resume</Link>
             </div>
           </div>
 
@@ -131,17 +131,17 @@ export default function Home() {
                 scrollToRef(experienceRef);
                 const mobileMenu = document.getElementById('mobile-menu');
                 if (mobileMenu) mobileMenu.classList.add('hidden');
-              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-2 hover:font-medium`}>/experience</button>
+              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium touch-manipulation min-h-[44px] text-left`}>/experience</button>
               <button onClick={() => {
                 scrollToRef(worksRef);
                 const mobileMenu = document.getElementById('mobile-menu');
                 if (mobileMenu) mobileMenu.classList.add('hidden');
-              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-2 hover:font-medium`}>/works</button>
+              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium touch-manipulation min-h-[44px] text-left`}>/works</button>
               <button onClick={() => {
                 scrollToRef(contactRef);
                 const mobileMenu = document.getElementById('mobile-menu');
                 if (mobileMenu) mobileMenu.classList.add('hidden');
-              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-2 hover:font-medium`}>/contact</button>
+              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium touch-manipulation min-h-[44px] text-left`}>/contact</button>
             </div>
           </div>
         </header>
@@ -151,8 +151,8 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>scroll to explore</p>
+          <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+            <p className={`text-sm mb-2  ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>scroll to explore</p>
             <div className="scroll-indicator">
               <svg
                 width="24"
@@ -420,7 +420,7 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator to Works */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          <div className="mt-32 flex flex-col items-center">
             <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>see my work</p>
             <div className="scroll-indicator">
               <svg

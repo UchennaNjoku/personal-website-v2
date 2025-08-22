@@ -52,7 +52,10 @@ export default function StickyCursor() {
   useEffect(() => {
     // Function to check if the device is mobile based on screen size and touch capability
     const checkMobile = () => {
-      return window.innerWidth <= 768 || ('ontouchstart' in window);
+      return window.innerWidth <= 768 || 
+             ('ontouchstart' in window) || 
+             (navigator.maxTouchPoints > 0) ||
+             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     };
 
     // Set initial state
@@ -69,6 +72,17 @@ export default function StickyCursor() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // Ensure cursor is restored on mobile and touch events work properly
+  useEffect(() => {
+    if (isMobile) {
+      document.body.style.setProperty("cursor", "auto");
+      // Ensure touch-action is not restricted
+      document.body.style.setProperty("touch-action", "manipulation");
+    } else {
+      document.body.style.removeProperty("touch-action");
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     // If mobile, don't set up cursor effects
@@ -144,7 +158,7 @@ export default function StickyCursor() {
       el.addEventListener("mouseenter", manageMouseOver);
     });
 
-    // Hide default cursor
+    // Hide default cursor only on non-mobile devices
     document.body.style.setProperty("cursor", "none");
 
     return () => {
@@ -154,7 +168,8 @@ export default function StickyCursor() {
         .forEach((el) => {
           el.removeEventListener("mouseenter", manageMouseOver);
         });
-      document.body.style.setProperty("cursor", null);
+      // Restore cursor
+      document.body.style.setProperty("cursor", "auto");
     };
   }, [isHovered, isMobile]);
 
