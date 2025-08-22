@@ -33,6 +33,7 @@ export default function Home() {
   const worksRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Function to scroll to a ref with explicit typing
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
@@ -73,6 +74,32 @@ export default function Home() {
     localStorage.setItem('darkMode', isDarkMode.toString());
   }, [isDarkMode]);
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // md breakpoint
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <StickyCursor />
@@ -99,19 +126,21 @@ export default function Home() {
 
               {/* Mobile Menu Button */}
               <button
-                onClick={() => {
-                  // Create mobile menu toggle function
-                  const mobileMenu = document.getElementById('mobile-menu');
-                  if (mobileMenu) {
-                    mobileMenu.classList.toggle('hidden');
-                  }
-                }}
-                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 md:hidden touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center`}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                onTouchStart={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 md:hidden touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95 transition-transform`}
                 aria-label="Menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
+                {isMobileMenuOpen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                )}
               </button>
             </div>
             <div className="hidden md:flex justify-center items-center space-x-6 md:space-x-10">
@@ -125,25 +154,63 @@ export default function Home() {
           </div>
 
           {/* Mobile Menu */}
-          <div id="mobile-menu" className={`hidden w-full ${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-[#EAEAC2]'} shadow-md absolute top-16 left-0 z-50 rounded-md mx-auto px-4 py-2 border border-[#433E0E] transition-colors duration-300`}>
-            <div className="flex flex-col space-y-4 py-4">
-              <button onClick={() => {
-                scrollToRef(experienceRef);
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu) mobileMenu.classList.add('hidden');
-              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium touch-manipulation min-h-[44px] text-left`}>/experience</button>
-              <button onClick={() => {
-                scrollToRef(worksRef);
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu) mobileMenu.classList.add('hidden');
-              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium touch-manipulation min-h-[44px] text-left`}>/works</button>
-              <button onClick={() => {
-                scrollToRef(contactRef);
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu) mobileMenu.classList.add('hidden');
-              }} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium touch-manipulation min-h-[44px] text-left`}>/contact</button>
+          {isMobileMenuOpen && (
+            <div className={`w-full ${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-[#EAEAC2]'} shadow-lg absolute top-16 left-0 z-[9999] rounded-md mx-auto px-4 py-2 border border-[#433E0E] transition-all duration-300 animate-in slide-in-from-top-2`}>
+              <div className="flex flex-col space-y-4 py-4">
+                <button
+                  onClick={() => {
+                    scrollToRef(experienceRef);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    scrollToRef(experienceRef);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium active:bg-[#433E0E] active:bg-opacity-20 touch-manipulation min-h-[44px] text-left rounded-md transition-all`}
+                >
+                  /experience
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToRef(worksRef);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    scrollToRef(worksRef);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium active:bg-[#433E0E] active:bg-opacity-20 touch-manipulation min-h-[44px] text-left rounded-md transition-all`}
+                >
+                  /works
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToRef(contactRef);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    scrollToRef(contactRef);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium active:bg-[#433E0E] active:bg-opacity-20 touch-manipulation min-h-[44px] text-left rounded-md transition-all`}
+                >
+                  /contact
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Mobile Menu Overlay */}
+          {isMobileMenuOpen && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-[9998] md:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+              onTouchStart={() => setIsMobileMenuOpen(false)}
+            />
+          )}
         </header>
         <section className={`flex flex-col m-auto justify-center min-h-screen px-4 py-10 md:py-0 md:h-screen max-w-5xl ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} transition-colors duration-300 relative`}>
           <div>
@@ -462,8 +529,8 @@ export default function Home() {
             <div className="mt-6 md:mt-32 w-full flex flex-col md:items-end">
               <h1 className="text-[#433E0E] font-black text-5xl md:text-7xl">01</h1>
               <h1 className={`text-3xl md:text-5xl font-medium ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'}`}>Thriv</h1>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">your personal fitness companion designed to help you dial in your fitness goals.</p>
-              <p className="text-lg md:text-xl  font-regular w-full md:w-4/5">in development using React Native and Firebase<br /></p>
+              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">- your personal fitness companion designed to help you dial in your fitness goals.</p>
+              <p className="text-lg md:text-xl  font-regular w-full md:w-4/5">- in development using React Native and Firebase<br /></p>
               <div className="flex flex-row justify-start w-full md:w-4/5">
                 <Button data-sticky variant="outline" className="h-fit w-fit mt-5">
                   <Link href={"https://thriv-app.vercel.app/"}> View Project</Link>
@@ -480,7 +547,7 @@ export default function Home() {
             <div className="mt-6 md:mt-32 w-full md:py-14">
               <h1 className="text-[#433E0E] font-black text-5xl md:text-7xl">02</h1>
               <h1 className={`text-3xl md:text-5xl font-medium ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'}`}>Munchies Recipes</h1>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">A recipe web application that helps you find the perfect recipe for any meal</p>
+              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">- the recipe web app that helps you find the perfect recipe for any meal</p>
               <p className="text-lg md:text-xl font-regular w-full md:w-4/5">- Developed using React and TailwindCSS<br />- Leveraging the Spoonacular API to get results</p>
               <Button data-sticky variant="outline" className="h-fit w-fit mt-5">
                 <Link href={"https://munchies-recipes.vercel.app/"}> View Project</Link>
@@ -501,7 +568,7 @@ export default function Home() {
             <div className="mt-6 md:mt-32 w-full flex flex-col md:items-end">
               <h1 className="text-[#433E0E] font-black text-7xl">03</h1>
               <h1 className={`text-3xl md:text-5xl font-medium ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'}`}>Sentinel Staffing</h1>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5 mt-3">Redesigned the web application portal for Sentinel Staffing Solutions. Developed using React and TailwindCSS</p>
+              <p className="text-lg md:text-xl font-regular w-full md:w-4/5 mt-3">- redesigned the web application portal for Sentinel Staffing Solutions. Developed using React and TailwindCSS</p>
               <div className="flex flex-row justify-start w-full md:w-4/5">
                 <Button data-sticky variant="outline" className="h-fit w-fit mt-5">
                   <Link href={"https://sentinel-staffing.vercel.app/"}> View Project</Link>
