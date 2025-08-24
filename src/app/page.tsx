@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 // import Footer from "./components/Footer";
+import Header from "./components/Header"
 import GMLogo from "./gm.png";
 import Munchies_Tablet from "./Munchies_Tablet.png";
 import Cisco from "./cisco.png";
@@ -35,15 +36,89 @@ export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Function to scroll to a ref with explicit typing
+  // Enhanced function to scroll to a ref with improved accuracy and browser compatibility
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      const headerHeight = 80; // Account for fixed header
-      const elementPosition = ref.current.offsetTop - headerHeight;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+    try {
+      if (ref.current) {
+        // Dynamically calculate header height for accuracy
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 80;
+        
+        // Get element position relative to document using getBoundingClientRect for accuracy
+        const elementPosition = ref.current.getBoundingClientRect().top + window.pageYOffset;
+        const targetPosition = Math.max(0, elementPosition - headerHeight - 20); // Extra padding and ensure non-negative
+        
+        // Check for smooth scrolling support and provide fallback
+        if ('scrollBehavior' in document.documentElement.style) {
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        } else {
+          // Fallback for older browsers
+          window.scrollTo(0, targetPosition);
+        }
+        
+        // Development mode debugging
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Scrolling to section with header height: ${headerHeight}px, target position: ${targetPosition}px`);
+        }
+      } else {
+        // Fallback to hash-based navigation if ref is not available
+        const sectionId = ref === experienceRef ? 'experience' : 
+                         ref === worksRef ? 'works' : 
+                         ref === contactRef ? 'contact' : null;
+        
+        if (sectionId) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const header = document.querySelector('header');
+            const headerHeight = header ? header.offsetHeight : 80;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const targetPosition = Math.max(0, elementPosition - headerHeight - 20);
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+            
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`Fallback: Scrolled to section ${sectionId} using getElementById`);
+            }
+          } else {
+            // Last resort: try hash navigation
+            window.location.hash = sectionId;
+            if (process.env.NODE_ENV === 'development') {
+              console.warn(`Fallback: Used hash navigation for section ${sectionId}`);
+            }
+          }
+        } else {
+          // Development mode warning for missing refs
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('ScrollToRef called but ref.current is null and no fallback section ID found');
+          }
+        }
+      }
+    } catch (error) {
+      // Error handling for any unexpected issues
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error in scrollToRef:', error);
+      }
+      
+      // Try basic hash navigation as last resort
+      const sectionId = ref === experienceRef ? 'experience' : 
+                       ref === worksRef ? 'works' : 
+                       ref === contactRef ? 'contact' : null;
+      
+      if (sectionId) {
+        try {
+          window.location.hash = sectionId;
+        } catch (hashError) {
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Even hash navigation failed:', hashError);
+          }
+        }
+      }
     }
   };
 
@@ -86,7 +161,7 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Close mobile menu on escape key
+  // Close mobile menu on escape key and manage body scroll
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -96,7 +171,13 @@ export default function Home() {
 
     if (isMobileMenuOpen) {
       document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+      document.body.classList.add('mobile-menu-open');
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        document.body.classList.remove('mobile-menu-open');
+      };
+    } else {
+      document.body.classList.remove('mobile-menu-open');
     }
   }, [isMobileMenuOpen]);
 
@@ -104,114 +185,17 @@ export default function Home() {
     <>
       <StickyCursor />
       <main className={`${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-[#EAEAC2]'} relative w-full overflow-x-hidden transition-colors duration-300`}>
-        <header className='w-full absolute top-0 p-4 md:p-10'>
-          <div className="flex w-full justify-between items-center m-auto max-w-8xl">
-            <div className="flex-1 flex items-center">
-              {/* Dark Mode Toggle */}
-              <button
-                onClick={toggleDarkMode}
-                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 mr-4 hover:scale-110 transition-all duration-200 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center`}
-                aria-label="Toggle Dark Mode"
-              >
-                {isDarkMode ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636a9 9 0 1 0 12.728 0L16.773 7.227Z" />
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-                  </svg>
-                )}
-              </button>
 
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                onTouchStart={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} p-2 md:hidden touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95 transition-transform`}
-                aria-label="Menu"
-                aria-expanded={isMobileMenuOpen}
-              >
-                {isMobileMenuOpen ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                  </svg>
-                )}
-              </button>
-            </div>
-            <div className="hidden md:flex justify-center items-center space-x-6 md:space-x-10">
-              <button data-sticky onClick={() => scrollToRef(experienceRef)} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal hover:font-medium no-underline border-b border-transparent transition-all hover:border-current`}>/experience</button>
-              <button data-sticky onClick={() => scrollToRef(worksRef)} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal hover:font-medium no-underline border-b border-transparent transition-all hover:border-current`}>/works</button>
-              <button data-sticky onClick={() => scrollToRef(contactRef)} className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} data-sticky font-normal hover:font-medium no-underline border-b border-transparent transition-all hover:border-current`}>/contact</button>
-            </div>
-            <div className='flex-1 flex justify-end'>
-              <Link href={"/resume.pdf"} locale={false} target="_blank" rel="noopener noreferrer" className={`h-fit w-fit border-2 hover:bg-[#433E0E] hover:text-[#EAEAC2] transition-all border-[#433E0E] rounded-md px-3 py-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#433E0E]'} cursor-pointer touch-manipulation min-h-[44px] flex items-center`}>get my resume</Link>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className={`w-full ${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-[#EAEAC2]'} shadow-lg absolute top-16 left-0 z-[9999] rounded-md mx-auto px-4 py-2 border border-[#433E0E] transition-all duration-300 animate-in slide-in-from-top-2`}>
-              <div className="flex flex-col space-y-4 py-4">
-                <button
-                  onClick={() => {
-                    scrollToRef(experienceRef);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  onTouchStart={(e) => {
-                    e.preventDefault();
-                    scrollToRef(experienceRef);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium active:bg-[#433E0E] active:bg-opacity-20 touch-manipulation min-h-[44px] text-left rounded-md transition-all`}
-                >
-                  /experience
-                </button>
-                <button
-                  onClick={() => {
-                    scrollToRef(worksRef);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  onTouchStart={(e) => {
-                    e.preventDefault();
-                    scrollToRef(worksRef);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium active:bg-[#433E0E] active:bg-opacity-20 touch-manipulation min-h-[44px] text-left rounded-md transition-all`}
-                >
-                  /works
-                </button>
-                <button
-                  onClick={() => {
-                    scrollToRef(contactRef);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  onTouchStart={(e) => {
-                    e.preventDefault();
-                    scrollToRef(contactRef);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} font-normal py-3 hover:font-medium active:bg-[#433E0E] active:bg-opacity-20 touch-manipulation min-h-[44px] text-left rounded-md transition-all`}
-                >
-                  /contact
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Mobile Menu Overlay */}
-          {isMobileMenuOpen && (
-            <div
-              className="fixed inset-0 bg-black bg-opacity-50 z-[9998] md:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
-              onTouchStart={() => setIsMobileMenuOpen(false)}
-            />
-          )}
-        </header>
+        <Header 
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+          scrollToRef={scrollToRef}
+          experienceRef={experienceRef}
+          worksRef={worksRef}
+          contactRef={contactRef}
+        />
         <section className={`flex flex-col m-auto justify-center min-h-screen px-4 py-10 md:py-0 md:h-screen max-w-5xl ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} transition-colors duration-300 relative`}>
           <div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl m-0 leading-tight"><b>Hi,</b><span role="img" className='waveanim' aria-label="sheep">👋🏼</span> <b>I&apos;m</b> <b>Uchenna Njoku</b>, <span className="bg-gradient-to-r from-[#C75434] via-[#E67E22] to-[#F39C12] bg-clip-text text-transparent gradient-animate"><b>I build things </b></span><span className="bg-gradient-to-r from-[#81901D] to-[#718010] bg-clip-text text-transparent gradient-animate"><b>with code.</b></span></h1>
@@ -243,12 +227,12 @@ export default function Home() {
 
         <section className={`flex flex-col min-h-screen m-auto justify-center px-4 py-10 md:py-0 md:h-screen max-w-5xl ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} transition-colors duration-300 relative`}>
 
-          <div ref={experienceRef} className="flex flex-col">
+          <div id="experience" ref={experienceRef} className="flex flex-col">
             <div className="flex flex-col space-y-8">
               {/* About me - smaller, less prominent */}
               <div className="mb-8">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl m-0 mb-4">I&apos;m a software engineer driven by curiosity, precision, and a love for solving complex problems.</h2>
-                <p className="text-base md:text-lg lg:text-xl m-0 opacity-80">I enjoy applying clean design patterns to complex problems</p>
+                <p className="text-base md:text-lg lg:text-xl m-0 opacity-80">I enjoy applying clean design patterns and elegant solutions</p>
               </div>
 
               {/* Work experience - more prominent */}
@@ -261,7 +245,6 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="space-y-6">
-
                   <div className="group">
                     <Drawer>
                       <DrawerTrigger>
@@ -510,7 +493,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section ref={worksRef} className={`py-16 flex flex-col m-auto justify-center mb-20 md:mb-48 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} px-4 transition-colors duration-300 relative`}>
+        <section id="works" ref={worksRef} className={`py-16 flex flex-col m-auto justify-center mb-20 md:mb-48 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} px-4 transition-colors duration-300 relative`}>
           <div className="w-full max-w-5xl m-auto mb-12">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#433E0E] to-[#81901D] bg-clip-text text-transparent">My Work</h1>
@@ -605,7 +588,7 @@ export default function Home() {
         </section>
 
 
-        <footer ref={contactRef} className="bg-[#433E0E] rounded-t-3xl text-[#EAEAC2] pt-20 md:pt-36">
+        <footer id="contact" ref={contactRef} className="bg-[#433E0E] rounded-t-3xl text-[#EAEAC2] pt-20 md:pt-36">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
             <div className="space-y-3">
               <h2 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-6xl">Get in touch! <span className="contact-anim">📬</span></h2>

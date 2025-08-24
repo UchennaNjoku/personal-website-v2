@@ -79,6 +79,14 @@ export default function StickyCursor() {
       document.body.style.setProperty("cursor", "auto");
       // Ensure touch-action is not restricted
       document.body.style.setProperty("touch-action", "manipulation");
+      // Remove any pointer-events restrictions on mobile
+      document.body.style.removeProperty("pointer-events");
+      // Ensure all interactive elements are touchable
+      const interactiveElements = document.querySelectorAll('button, a, [role="button"], [onclick]');
+      interactiveElements.forEach(el => {
+        (el as HTMLElement).style.touchAction = 'manipulation';
+        (el as HTMLElement).style.pointerEvents = 'auto';
+      });
     } else {
       document.body.style.removeProperty("touch-action");
     }
