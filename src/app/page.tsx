@@ -201,7 +201,7 @@ export default function Home() {
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <p className={`text-sm mb-2  ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>scroll to explore</p>
+            <p className={`text-sm mb-2  ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>see what I've done</p>
             <div className="scroll-indicator">
               <svg
                 width="24"
@@ -607,7 +607,7 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator to Contact */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          <div className="flex flex-col items-center mt-8">
             <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>let&apos;s connect</p>
             <div className="scroll-indicator">
               <svg
@@ -631,7 +631,7 @@ export default function Home() {
         </section>
 
 
-        <footer id="contact" ref={contactRef} className="bg-[#433E0E] rounded-t-3xl text-[#EAEAC2] pt-20 md:pt-36">
+        <footer id="contact" ref={contactRef} className="bg-[#433E0E] rounded-t-3xl text-[#EAEAC2] pt-12 md:pt-36">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
             <div className="space-y-3">
               <h2 className="text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-6xl">Get in touch! <span className="contact-anim">📬</span></h2>
