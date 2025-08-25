@@ -1,0 +1,58 @@
+/**
+ * ExperienceTransition CSS
+ * Additional styles for smooth transitions and performance optimizations
+ */
+
+.experience-transition-container {
+  /* Ensure smooth transitions with hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Optimize for animations */
+  will-change: opacity, transform;
+}
+
+.experience-transition-content {
+  /* Smooth opacity transitions */
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Hardware acceleration for better performance */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.experience-transition-content.fade-out {
+  opacity: 0;
+  transition-duration: 200ms;
+}
+
+.experience-transition-content.fade-in {
+  opacity: 1;
+  transition-duration: 300ms;
+}
+
+/* Loading indicator animation */
+.experience-transition-loading {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Prevent layout shifts during transitions */
+.experience-transition-wrapper {
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure consistent spacing */
+.experience-transition-wrapper > * {
+  width: 100%;
+}
