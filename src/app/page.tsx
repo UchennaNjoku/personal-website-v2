@@ -534,7 +534,7 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row max-w-5xl m-auto justify-between md:mt-8 gap-4">
             <div className="mt-8 md:mt-16">
-              <Image src={ThrivMockup} className="w-full h-auto" width={1000} height={600} alt="Thriv" />
+              <Image src={ThrivMockup} className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg" width={600} height={360} alt="Thriv" />
             </div>
             <div className="mt-6 md:mt-32 w-full flex flex-col md:items-end">
               <h1 className="text-[#433E0E] font-black text-5xl md:text-7xl">01</h1>
@@ -567,13 +567,13 @@ export default function Home() {
               </Button>
             </div>
             <div className="mt-8 md:mt-16">
-              <Image src={Munchies_Tablet} className="w-full h-auto" width={1000} height={600} alt="Munchies" />
+              <Image src={Munchies_Tablet} className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg" width={600} height={360} alt="Munchies" />
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row max-w-5xl m-auto justify-between md:mt-8 gap-4">
             <div className="mt-8 md:mt-16">
-              <Image src={Sentinel_Desktop} className="w-full h-auto" width={900} height={500} alt="Sentinel Staffing" />
+              <Image src={Sentinel_Desktop} className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg" width={540} height={300} alt="Sentinel Staffing" />
             </div>
             <div className="mt-6 md:mt-32 w-full flex flex-col md:items-end">
               <h1 className="text-[#433E0E] font-black text-7xl">03</h1>
