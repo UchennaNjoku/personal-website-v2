@@ -41,7 +41,6 @@ const ExperienceContentExample: React.FC<ExperienceContentExampleProps> = ({
         <ExperienceContent
           experience={experiences[activeExperience]}
           isDarkMode={isDarkMode}
-          isVisible={true}
         />
       </div>
     </div>
