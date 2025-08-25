@@ -201,7 +201,7 @@ export default function Home() {
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <p className={`text-sm mb-2  ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>see what I've done</p>
+            <p className={`text-sm mb-2  ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>see what I&apos;ve done</p>
             <div className="scroll-indicator">
               <svg
                 width="24"
