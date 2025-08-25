@@ -183,7 +183,7 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <p className="text-sm mb-2 text-text-secondary">see what I&apos;ve done</p>
             <div className="scroll-indicator">
               <svg
