@@ -53,7 +53,6 @@ const ExperienceContentDemo: React.FC = () => {
           <ExperienceContent
             experience={experiences[currentIndex]}
             isDarkMode={isDarkMode}
-            isVisible={true}
           />
         </div>
 
