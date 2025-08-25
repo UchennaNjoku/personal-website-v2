@@ -64,7 +64,6 @@ const ExperienceTransitionDemo: React.FC = () => {
         <ExperienceContent
           experience={currentExperience}
           isDarkMode={isDarkMode}
-          isVisible={!isTransitioning}
         />
       </ExperienceTransition>
       
