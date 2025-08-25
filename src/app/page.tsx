@@ -257,8 +257,8 @@ export default function Home() {
 
         <section id="works" ref={worksRef} className={`py-16 flex flex-col m-auto justify-center mb-20 md:mb-48 ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} px-4 transition-colors duration-300 relative`}>
           <div className="w-full max-w-5xl m-auto mb-12">
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#433E0E] to-[#81901D] bg-clip-text text-transparent">My Work</h1>
+            <div className="flex items-center justify-between mb-3">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#433E0E] to-[#81901D] bg-clip-text text-transparent">/works</h1>
               <div className="flex items-center space-x-2">
                 <div className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-[#433E0E]' : 'bg-[#433E0E]'} animate-pulse`}></div>
                 <span className={`text-sm ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-70`}>projects I&apos;ve built</span>
