@@ -9,6 +9,7 @@
 
 import React, { useCallback } from 'react';
 import { ExperienceNavigationProps } from '@/types/experience';
+import './ExperienceNavigation.css';
 
 const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
   activeIndex,
@@ -65,7 +66,7 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
 
   return (
     <nav 
-      className="flex items-center justify-center space-x-4 sm:space-x-6 md:space-x-8 mb-8 px-4 overflow-x-auto"
+      className="flex items-center justify-center space-x-3 sm:space-x-5 md:space-x-7 mb-12 px-6 py-4 overflow-x-auto scrollbar-hide"
       role="tablist"
       aria-label="Experience navigation"
     >
@@ -84,14 +85,15 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
             onClick={() => onTabClick(index)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={`
-              group relative px-4 py-3 sm:px-6 font-mono text-base sm:text-lg font-medium 
-              transition-all duration-300 ease-in-out hover:scale-105 hover:transform 
+              experience-tab group relative px-4 py-3 sm:px-5 sm:py-4 font-mono text-lg sm:text-xl font-medium 
+              transition-all duration-500 ease-out hover:scale-105 hover:transform 
               focus:outline-none focus:ring-2 focus:ring-offset-2
-              min-w-[50px] sm:min-w-[60px] min-h-[48px] flex items-center justify-center
-              flex-shrink-0 touch-manipulation
+              min-w-[50px] sm:min-w-[60px] min-h-[50px] sm:min-h-[60px] 
+              flex items-center justify-center flex-shrink-0 touch-manipulation
+              rounded-xl backdrop-blur-sm
               ${isActive 
-                ? `${isDarkMode ? 'text-[#81901D]' : 'text-[#81901D]'} font-bold transform scale-105` 
-                : `${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-60 hover:opacity-100 hover:text-[#81901D]`
+                ? `experience-tab-active text-[#81901D] font-bold transform scale-105 shadow-xl` 
+                : `${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-50 hover:opacity-90 hover:text-[#81901D]`
               }
               ${isDarkMode 
                 ? 'focus:ring-[#81901D] focus:ring-offset-[#1A1A1A]' 
@@ -99,37 +101,59 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
               }
             `}
           >
-            {tabNumber}
+            {/* Number with subtle text shadow */}
+            <span className={`relative z-10 ${isActive ? 'drop-shadow-sm' : ''}`}>
+              {tabNumber}
+            </span>
             
-            {/* Active indicator underline with slide animation */}
+            {/* Active state background with gradient */}
             <div
               className={`
-                absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 transition-all duration-300 ease-in-out
+                absolute inset-0 rounded-xl transition-all duration-500 ease-out -z-10
                 ${isActive 
-                  ? 'bg-[#81901D] w-full scale-x-100' 
-                  : 'bg-[#81901D] w-0 scale-x-0 group-hover:w-3/4 group-hover:scale-x-100'
+                  ? `bg-gradient-to-br ${isDarkMode 
+                      ? 'from-[#81901D]/15 via-[#81901D]/10 to-[#433E0E]/5' 
+                      : 'from-[#81901D]/12 via-[#81901D]/8 to-[#433E0E]/3'
+                    } shadow-xl shadow-[#81901D]/25 border border-[#81901D]/20` 
+                  : 'bg-transparent'
                 }
               `}
             />
             
-            {/* Hover effect background with subtle glow */}
+            {/* Hover effect background */}
             <div
               className={`
-                absolute inset-0 rounded-lg transition-all duration-300 ease-in-out -z-10
-                ${isActive 
-                  ? 'bg-[#81901D] bg-opacity-10 shadow-lg shadow-[#81901D]/20' 
-                  : 'bg-[#433E0E] bg-opacity-0 group-hover:bg-opacity-8 group-hover:shadow-md group-hover:shadow-[#433E0E]/10'
+                absolute inset-0 rounded-xl transition-all duration-300 ease-out -z-20
+                ${!isActive 
+                  ? `bg-gradient-to-br ${isDarkMode 
+                      ? 'from-[#433E0E]/0 to-[#433E0E]/0 group-hover:from-[#433E0E]/8 group-hover:to-[#433E0E]/4' 
+                      : 'from-[#433E0E]/0 to-[#433E0E]/0 group-hover:from-[#433E0E]/6 group-hover:to-[#433E0E]/3'
+                    } group-hover:shadow-lg group-hover:shadow-[#433E0E]/15 group-hover:border group-hover:border-[#433E0E]/10` 
+                  : ''
                 }
               `}
             />
+            
+            {/* Subtle inner glow for active state */}
+            {isActive && (
+              <div
+                className={`
+                  absolute inset-1 rounded-lg transition-all duration-500 ease-out -z-5
+                  bg-gradient-to-br ${isDarkMode 
+                    ? 'from-[#81901D]/5 to-transparent' 
+                    : 'from-[#81901D]/8 to-transparent'
+                  }
+                `}
+              />
+            )}
             
             {/* Focus indicator */}
             <div
               className={`
-                absolute inset-0 rounded-lg border-2 transition-all duration-200 ease-in-out -z-10
+                absolute inset-0 rounded-xl border-2 transition-all duration-300 ease-out -z-30
                 ${isActive 
-                  ? 'border-[#81901D] border-opacity-30' 
-                  : 'border-transparent focus-within:border-[#81901D] focus-within:border-opacity-50'
+                  ? 'border-transparent' 
+                  : 'border-transparent focus-within:border-[#81901D] focus-within:border-opacity-60 focus-within:shadow-lg focus-within:shadow-[#81901D]/20'
                 }
               `}
             />

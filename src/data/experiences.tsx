@@ -1,12 +1,14 @@
 /**
  * Experience data array containing all job information
- * Extracted from existing page content for the interactive navigation feature
+ * Updated with actual professional experience
  */
 
 import React from 'react';
 import Image from 'next/image';
 import { Experience } from '@/types/experience';
 import GoldmanLogo from '@/app/goldman.png';
+import CiscoLogo from '@/app/cisco.png';
+import GMLogo from '@/app/gm.png';
 
 // Amazon SVG Logo Component
 const AmazonLogo = () => (
@@ -32,63 +34,67 @@ const AmazonLogo = () => (
 export const experiences: Experience[] = [
   {
     id: '00',
-    company: 'Goldman Sachs',
-    position: 'Software Engineer Intern',
-    period: 'Summer 2025',
-    logo: <Image src={GoldmanLogo} alt="Goldman Sachs" width={64} height={64} className="rounded-lg" />,
-    achievements: [
-      'Developed a secure, scalable CSV report generation and download system for the Payroll Tax Calculator using Spring Boot, AWS ECS Fargate, Lambda, S3, and Aurora PostgreSQL.',
-      'Implemented dynamic Java-based formatting and zero-knowledge password encryption, cutting processing time by 60% and ensuring full audit compliance.',
-      'Led full-stack implementation of a U.S. Tax Reciprocity Rules Engine, designing OpenAPI-driven REST APIs and an accessible React + TypeScript UI for managing multi-state income tax exemptions.',
-      'Eliminated 95% of manual entries and reduced compliance errors to zero for managing 46,000 employees across 30+ countries.'
-    ]
-  },
-  {
-    id: '01',
     company: 'Amazon (AWS)',
     position: 'Software Engineer Intern',
     period: 'May 2024 - August 2024',
     logo: <AmazonLogo />,
     achievements: [
-      'Led the Local Compute Infrastructure (LCI) Bootloader Rollout project to streamline and automate deployment processes across 500+ global network sites.',
-      'Developed a comprehensive release and deployment pipeline for new bootloader versions and PXE artifacts, reducing failures by 20% and projected to decrease system downtime by 30%.',
-      'Created and implemented testing environments for bootloader validation, improving reliability of the global network infrastructure.'
+      'Led the Local Compute Infrastructure (LCI) Bootloader Rollout project to streamline and automate deployment process of network devices across the expanding LCI fleet, impacting over 500 network sites globally.',
+      'Developed a comprehensive release, rollout, and deployment pipeline for new bootloader versions and Preboot Execution Environment (PXE) artifacts whilst creating and implementing testing packages and environments.',
+      'Reduced bootloader release failures by 20%, expected to decrease system downtime by 30%.'
+    ],
+    subExperiences: [
+      {
+        id: '00-sub',
+        company: 'Amazon (AWS)',
+        position: 'Software Engineer Intern',
+        period: 'May 2023 - August 2023',
+        logo: <AmazonLogo />,
+        achievements: [
+          'Architected the migration of the AWS Network host generation workflow with automated pipelines, leveraging AWS Services such as CloudFormation, CloudWatch, Lambda, and Cloud Development Kit, increasing site build speed by 40%.',
+          'Increased robustness of 450+ AWS Network Centres which run over 1 million external services, resulting in increased reliability and manageability, implementing these changes using TypeScript, Java, and Python.',
+          'Assisted in network host initialization and maintenance processes, implementing status checkers to allow for ease of tracking in a user friendly interface to monitor metrics.'
+        ]
+      }
+    ]
+  },
+  {
+    id: '01',
+    company: 'Goldman Sachs',
+    position: 'Software Engineer Intern',
+    period: 'June 2025 - August 2025',
+    logo: <Image src={GoldmanLogo} alt="Goldman Sachs" width={64} height={64} className="rounded-lg" />,
+    achievements: [
+      'Developed a secure, scalable CSV report generation and download system for the Payroll Tax Calculator using Spring Boot, AWS ECS Fargate, Lambda, S3, and Aurora PostgreSQL, with dynamic Java-based formatting and zero-knowledge password encryption.',
+      'Cut processing time by 60% and ensured full audit compliance.',
+      'Led full-stack implementation of a U.S. Tax Reciprocity Rules Engine, designing OpenAPI-driven REST APIs and an accessible React + TypeScript UI for managing multi-state income tax exemptions.',
+      'Eliminated 95% of manual entries and reduced compliance errors to zero.'
     ]
   },
   {
     id: '02',
-    company: 'Amazon (AWS)',
+    company: 'Cisco - Splunk',
     position: 'Software Engineer Intern',
-    period: 'May 2023 - August 2023',
-    logo: <AmazonLogo />,
+    period: 'January 2025 - April 2025',
+    logo: <Image src={CiscoLogo} alt="Cisco Splunk" width={64} height={64} className="rounded-lg" />,
     achievements: [
-      'Architected the migration process of the internal AWS Network host generation workflow with automated pipelines, leveraging AWS Services such as CloudFormation, CloudWatch, AWS Lambda, and Cloud Development Kit, increasing site build speed by 40%.',
-      'Increased robustness of 450+ AWS Network Centres which run over 1 million external services, resulting in increased reliability and manageability, implementing these changes using Typescript, Java, and Python.',
-      'Assisted in network host initialization and maintenance processes, implementing status checkers to allow for ease of tracking in a user friendly interface to monitor metrics.'
+      'Engineered core functionalities of Splunk\'s Maintenance Window Service in Go, automating ingestion of maintenance schedules from Google Sheets into Splunk.',
+      'Processing over 10,000 rows of operational data per week and reducing manual scheduling effort by 70%.',
+      'Implemented checksum-based diffing and conflict-detection algorithms in Go, reducing redundant Splunk REST API calls by 30%.',
+      'Cut duplicate schedule errors by 35%, and catching 98% of deployment conflicts (e.g., overlapping upgrade cohorts).'
     ]
   },
   {
     id: '03',
-    company: 'Placeholder Company',
-    position: 'Future Role',
-    period: 'TBD',
-    logo: <div className="w-16 h-16 bg-gray-300 rounded-lg flex items-center justify-center text-gray-600 font-bold">PC</div>,
+    company: 'General Motors EcoCAR EV Challenge',
+    position: 'Team Lead',
+    period: 'January 2023 - December 2024',
+    logo: <Image src={GMLogo} alt="General Motors" width={64} height={64} className="rounded-lg" />,
     achievements: [
-      'Future experience placeholder - can be populated with additional roles or projects as needed.',
-      'This slot is ready for expansion when new experiences are added.',
-      'Maintains consistent structure for the numbered navigation system.'
-    ]
-  },
-  {
-    id: '04',
-    company: 'Placeholder Company',
-    position: 'Future Role',
-    period: 'TBD',
-    logo: <div className="w-16 h-16 bg-gray-300 rounded-lg flex items-center justify-center text-gray-600 font-bold">PC</div>,
-    achievements: [
-      'Future experience placeholder - can be populated with additional roles or projects as needed.',
-      'This slot is ready for expansion when new experiences are added.',
-      'Maintains consistent structure for the numbered navigation system.'
+      'Led the Connected and Autonomous Vehicles (CAVS) sub-team, driving the implementation of efficiency-oriented solutions and innovations to address the challenges inherent in electric vehicles.',
+      'Engineered advanced vehicle control algorithms using MathWorks MATLAB and Simulink, significantly enhancing vehicle performance and efficiency. Validated strategy implementations using dSPACE and CARLA simulations.',
+      'Refined extensive datasets from onboard sensors by applying Fourier and Wavelet transforms for noise reduction.',
+      'Leveraged Principal Component Analysis and t-distributed stochastic neighbor embedding (t-SNE) for data parsing with machine learning predictive models to gain insights into vehicle health and energy consumption.'
     ]
   }
 ];

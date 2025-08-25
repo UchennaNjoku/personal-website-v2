@@ -28,10 +28,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
     setActiveIndex(index);
     
     // Reset transition state after animation completes
-    // Total time: 200ms fade out + 300ms fade in = 500ms
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 500);
+    }, 300); // Simplified timing: 150ms fade out + 150ms fade in
   }, [activeIndex, isTransitioning]);
 
   const currentExperience = experiences[activeIndex];
@@ -71,7 +70,6 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ isDarkMode }) => 
           <ExperienceContent
             experience={currentExperience}
             isDarkMode={isDarkMode}
-            isVisible={!isTransitioning}
           />
         </ExperienceTransition>
       </div>

@@ -23,7 +23,6 @@ export interface ExperienceNavigationProps {
 export interface ExperienceContentProps {
   experience: Experience;
   isDarkMode: boolean;
-  isVisible: boolean;
 }
 
 export interface ExperienceTransitionProps {

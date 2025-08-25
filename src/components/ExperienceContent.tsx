@@ -9,15 +9,10 @@ import { ExperienceContentProps } from '@/types/experience';
 
 const ExperienceContent: React.FC<ExperienceContentProps> = ({
   experience,
-  isDarkMode,
-  isVisible
+  isDarkMode
 }) => {
   return (
-    <div 
-      className={`transition-opacity duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
-    >
+    <div>
       <div className="flex flex-col space-y-6">
         {/* Company Header Section */}
         <div className="flex flex-row items-start w-full">
