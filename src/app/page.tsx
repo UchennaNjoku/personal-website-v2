@@ -465,7 +465,7 @@ export default function Home() {
                             <div className="space-y-4">
                               <div className="border-b pb-4 mb-4">
                                 <h2 className="text-lg md:text-xl font-semibold text-center">
-                                  Software Engineer 
+                                  Software Engineer
                                 </h2>
                                 <p className="text-sm text-[#433E0E] font-medium text-center mt-2">Connected and Autonomous Vehicles Team Lead
                                 </p>
@@ -539,9 +539,59 @@ export default function Home() {
                     <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">01</h1>
                   </div>
                   <div className="flex flex-col justify-start flex-1">
-                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Thriv</h1>
-                    <p className="text-sm md:text-base opacity-70 mb-3">Your personal fitness companion designed to help you dial in your fitness goals.</p>
-                    <p className="text-sm md:text-base opacity-70 mb-4">In development using React Native and Firebase</p>
+                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>VolSurf-CPP - Volatility Surface Engine</h1>
+                    <p className="text-sm md:text-base opacity-70 mb-3">Developed a high-performance, arbitrage-free volatility surface engine in C++17 with Python bindings (pybind11), featuring multi-threaded implied volatility solvers and constrained spline fitting using OpenMP.</p>
+                    <p className="text-sm md:text-base opacity-70 mb-4">Automated option pricing research pipeline with QuantLib-benchmarked pricers, data ingestion from Yahoo Finance & Polygon.io, and interactive 3D surface visualization dashboards using Plotly and Streamlit</p>
+                    <div className="flex flex-row gap-3">
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"#"}>View Project</Link>
+                      </Button>
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"#"}>See Github</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-5xl m-auto mt-8">
+            <div className="group">
+              <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
+                  <div className="flex-shrink-0">
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">02</h1>
+                  </div>
+                  <div className="flex flex-col justify-start flex-1">
+                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>WildTrack - Mobile Attendance System</h1>
+                    <p className="text-sm md:text-base opacity-70 mb-3">A comprehensive mobile attendance tracking system leveraging NFC technology for secure, contactless check-ins in educational institutions.</p>
+                    <p className="text-sm md:text-base opacity-70 mb-4">Built with React Native, Supabase, and NFC integration to prevent proxy attendance and streamline class management for educators</p>
+                    <div className="flex flex-row gap-3">
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"#"}>View Project</Link>
+                      </Button>
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"#"}>See Github</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-5xl m-auto mt-8">
+            <div className="group">
+              <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
+                  <div className="flex-shrink-0">
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">03</h1>
+                  </div>
+                  <div className="flex flex-col justify-start flex-1">
+                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Thriv - Personal Fitness Companion</h1>
+                    <p className="text-sm md:text-base opacity-70 mb-3">A comprehensive mobile fitness application designed to help users achieve their health and wellness goals through personalized workout plans, nutrition tracking, and progress monitoring.</p>
+                    <p className="text-sm md:text-base opacity-70 mb-4">Built with React Native and Firebase, featuring real-time data synchronization, custom workout builder, meal planning tools, and social features for community engagement and motivation</p>
                     <div className="flex flex-row gap-3">
                       <Button data-sticky variant="outline" className="h-fit w-fit">
                         <Link href={"https://thriv-app.vercel.app/"}>View Project</Link>
@@ -556,13 +606,12 @@ export default function Home() {
             </div>
           </div>
 
-
           <div className="max-w-5xl m-auto mt-8">
             <div className="group">
               <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
                 <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
                   <div className="flex-shrink-0">
-                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">02</h1>
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">04</h1>
                   </div>
                   <div className="flex flex-col justify-start flex-1">
                     <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Munchies Recipes</h1>
@@ -587,7 +636,7 @@ export default function Home() {
               <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
                 <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
                   <div className="flex-shrink-0">
-                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">03</h1>
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">05</h1>
                   </div>
                   <div className="flex flex-col justify-start flex-1">
                     <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Sentinel Staffing</h1>
