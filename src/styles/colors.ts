@@ -8,9 +8,9 @@
 export const colors = {
   // Brand Colors - Core identity colors
   brand: {
-    primary: '#433E0E',      // Dark olive - main brand color
-    secondary: '#81901D',    // Lighter olive - accent color
-    tertiary: '#718010',     // Even lighter olive variation
+    primary: '#135092',      // Dark olive - main brand color
+    secondary: '#2080A8',    // Lighter olive - accent color
+    tertiary: '#CEE542',     // Even lighter olive variation
   },
 
   // Neutral Colors - Background and text colors
@@ -51,7 +51,7 @@ export const colors = {
   semantic: {
     light: {
       text: {
-        primary: '#18020C',
+        primary: '#130A04',
         secondary: 'rgba(24, 2, 12, 0.8)',
         tertiary: 'rgba(24, 2, 12, 0.6)',
         disabled: 'rgba(24, 2, 12, 0.4)',
