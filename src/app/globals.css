@@ -4,65 +4,70 @@
  
 @layer base {
   :root {
+    /* Existing shadcn/ui variables */
     --background: 60 25% 91%; /* #EAEAC2 */
     --foreground: 320 75% 6%; /* #18020C */
-
     --card: 60 25% 91%; /* #EAEAC2 */
     --card-foreground: 320 75% 6%; /* #18020C */
- 
     --popover: 60 25% 91%; /* #EAEAC2 */
     --popover-foreground: 320 75% 6%; /* #18020C */
- 
     --primary: 52 67% 16%; /* #433E0E */
     --primary-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --secondary: 52 67% 16%; /* #433E0E */
     --secondary-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --muted: 52 30% 30%;
     --muted-foreground: 320 40% 20%;
- 
     --accent: 52 67% 16%; /* #433E0E */
     --accent-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 25% 91%; /* #EAEAC2 */
-
     --border: 52 30% 30%;
     --input: 52 30% 30%;
     --ring: 52 67% 16%; /* #433E0E */
- 
     --radius: 0.5rem;
+
+    /* Custom semantic color variables - Light Mode */
+    --text-primary: #18020C;
+    --text-secondary: rgba(24, 2, 12, 0.8);
+    --text-tertiary: rgba(24, 2, 12, 0.6);
+    --bg-primary: #EAEAC2;
+    --bg-secondary: #F5F5DC;
+    --bg-tertiary: #FAFAFA;
+    --border-primary: rgba(67, 62, 14, 0.2);
+    --border-secondary: rgba(67, 62, 14, 0.1);
   }
  
   .dark {
+    /* Existing shadcn/ui variables */
     --background: 0 0% 10%; /* #1A1A1A */
     --foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --card: 0 0% 10%; /* #1A1A1A */
     --card-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --popover: 0 0% 10%; /* #1A1A1A */
     --popover-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --primary: 52 67% 16%; /* #433E0E */
     --primary-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --secondary: 0 0% 15%;
     --secondary-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --muted: 0 0% 15%;
     --muted-foreground: 60 15% 70%;
- 
     --accent: 52 67% 16%; /* #433E0E */
     --accent-foreground: 60 25% 91%; /* #EAEAC2 */
- 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 25% 91%; /* #EAEAC2 */
-
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 52 67% 16%; /* #433E0E */
+
+    /* Custom semantic color variables - Dark Mode */
+    --text-primary: #EAEAC2;
+    --text-secondary: rgba(234, 234, 194, 0.8);
+    --text-tertiary: rgba(234, 234, 194, 0.6);
+    --bg-primary: #1A1A1A;
+    --bg-secondary: #2A2A2A;
+    --bg-tertiary: #3A3A3A;
+    --border-primary: rgba(67, 62, 14, 0.3);
+    --border-secondary: rgba(67, 62, 14, 0.2);
   }
 }
  

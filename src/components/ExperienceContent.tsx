@@ -6,11 +6,13 @@
 
 import React from 'react';
 import { ExperienceContentProps } from '@/types/experience';
+import { useColors } from '@/hooks/useColors';
 
 const ExperienceContent: React.FC<ExperienceContentProps> = ({
   experience,
   isDarkMode
 }) => {
+  const colors = useColors(isDarkMode);
   return (
     <div>
       <div className="flex flex-col space-y-6">
@@ -23,22 +25,14 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({
           
           {/* Company Info */}
           <div className="flex flex-col justify-start ml-6 flex-1">
-            <h1 className={`text-2xl md:text-4xl font-bold text-left ${
-              isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'
-            }`}>
+            <h1 className="text-2xl md:text-4xl font-bold text-left text-text-primary">
               {experience.company}
             </h1>
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
-              <h2 className={`text-lg md:text-xl font-semibold ${
-                isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'
-              }`}>
+              <h2 className="text-lg md:text-xl font-semibold text-text-primary">
                 {experience.position}
               </h2>
-              <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                isDarkMode 
-                  ? 'text-[#433E0E] bg-[#433E0E] bg-opacity-20' 
-                  : 'text-[#433E0E] bg-[#433E0E] bg-opacity-10'
-              }`}>
+              <span className="text-sm font-medium px-3 py-1 rounded-full text-brand-primary bg-brand-primary bg-opacity-20">
                 {experience.period}
               </span>
             </div>
@@ -46,11 +40,7 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({
         </div>
 
         {/* Achievements Section */}
-        <div className={`border-t pt-6 ${
-          isDarkMode 
-            ? 'border-[#433E0E] border-opacity-20' 
-            : 'border-[#433E0E] border-opacity-20'
-        }`}>
+        <div className="border-t pt-6 border-border-primary">
           <div className="space-y-4">
             {experience.achievements.map((achievement, index) => (
               <div 
@@ -58,14 +48,10 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({
                 className="flex items-start space-x-3"
               >
                 {/* Bullet Point */}
-                <div className={`w-2 h-2 rounded-full mt-3 flex-shrink-0 ${
-                  isDarkMode ? 'bg-[#81901D]' : 'bg-[#433E0E]'
-                }`} />
+                <div className="w-2 h-2 rounded-full mt-3 flex-shrink-0 bg-brand-secondary" />
                 
                 {/* Achievement Text */}
-                <p className={`text-base md:text-lg leading-relaxed ${
-                  isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'
-                }`}>
+                <p className="text-base md:text-lg leading-relaxed text-text-primary">
                   {achievement}
                 </p>
               </div>
@@ -75,24 +61,14 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({
 
         {/* Sub-experiences (if any) */}
         {experience.subExperiences && experience.subExperiences.length > 0 && (
-          <div className={`border-t pt-6 space-y-6 ${
-            isDarkMode 
-              ? 'border-[#433E0E] border-opacity-20' 
-              : 'border-[#433E0E] border-opacity-20'
-          }`}>
+          <div className="border-t pt-6 space-y-6 border-border-primary">
             {experience.subExperiences.map((subExp, index) => (
               <div key={index} className="space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <h3 className={`text-lg md:text-xl font-semibold ${
-                    isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'
-                  }`}>
+                  <h3 className="text-lg md:text-xl font-semibold text-text-primary">
                     {subExp.position}
                   </h3>
-                  <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                    isDarkMode 
-                      ? 'text-[#433E0E] bg-[#433E0E] bg-opacity-20' 
-                      : 'text-[#433E0E] bg-[#433E0E] bg-opacity-10'
-                  }`}>
+                  <span className="text-sm font-medium px-3 py-1 rounded-full text-brand-primary bg-brand-primary bg-opacity-20">
                     {subExp.period}
                   </span>
                 </div>
@@ -103,12 +79,8 @@ const ExperienceContent: React.FC<ExperienceContentProps> = ({
                       key={achIndex}
                       className="flex items-start space-x-3"
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full mt-3.5 flex-shrink-0 ${
-                        isDarkMode ? 'bg-[#81901D]' : 'bg-[#433E0E]'
-                      }`} />
-                      <p className={`text-base md:text-lg leading-relaxed ${
-                        isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'
-                      }`}>
+                      <div className="w-1.5 h-1.5 rounded-full mt-3.5 flex-shrink-0 bg-brand-secondary" />
+                      <p className="text-base md:text-lg leading-relaxed text-text-primary">
                         {achievement}
                       </p>
                     </div>

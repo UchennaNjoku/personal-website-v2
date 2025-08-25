@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       colors: {
+        // Existing shadcn/ui colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -52,6 +53,31 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        
+        // Custom brand colors
+        brand: {
+          primary: '#433E0E',
+          secondary: '#81901D',
+          tertiary: '#718010',
+        },
+        
+        // Custom accent colors
+        'accent-orange': '#C75434',
+        'accent-orange-mid': '#E67E22',
+        'accent-orange-end': '#F39C12',
+        'accent-success': '#10B981',
+        'accent-warning': '#F59E0B',
+        'accent-error': '#EF4444',
+        
+        // Theme-aware semantic colors
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-tertiary': 'var(--text-tertiary)',
+        'bg-primary': 'var(--bg-primary)',
+        'bg-secondary': 'var(--bg-secondary)',
+        'bg-tertiary': 'var(--bg-tertiary)',
+        'border-primary': 'var(--border-primary)',
+        'border-secondary': 'var(--border-secondary)',
       },
       borderRadius: {
         lg: "var(--radius)",

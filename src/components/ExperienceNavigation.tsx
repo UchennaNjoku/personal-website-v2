@@ -9,6 +9,7 @@
 
 import React, { useCallback } from 'react';
 import { ExperienceNavigationProps } from '@/types/experience';
+import { useColors } from '@/hooks/useColors';
 import './ExperienceNavigation.css';
 
 const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
@@ -17,6 +18,7 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
   experienceCount,
   isDarkMode
 }) => {
+  const colors = useColors(isDarkMode);
   // Handle keyboard navigation
   const handleKeyDown = useCallback((event: React.KeyboardEvent, index: number) => {
     switch (event.key) {
@@ -92,12 +94,12 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
               flex items-center justify-center flex-shrink-0 touch-manipulation
               rounded-xl backdrop-blur-sm
               ${isActive 
-                ? `experience-tab-active text-[#81901D] font-bold transform scale-105 shadow-xl` 
-                : `${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} opacity-50 hover:opacity-90 hover:text-[#81901D]`
+                ? `experience-tab-active text-brand-secondary font-bold transform scale-105 shadow-xl` 
+                : `text-text-primary opacity-50 hover:opacity-90 hover:text-brand-secondary`
               }
-              ${isDarkMode 
-                ? 'focus:ring-[#81901D] focus:ring-offset-[#1A1A1A]' 
-                : 'focus:ring-[#81901D] focus:ring-offset-[#EAEAC2]'
+              focus:ring-brand-secondary ${isDarkMode 
+                ? 'focus:ring-offset-bg-primary' 
+                : 'focus:ring-offset-bg-primary'
               }
             `}
           >
