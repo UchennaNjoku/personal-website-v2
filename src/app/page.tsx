@@ -7,8 +7,6 @@ import Header from "./components/Header"
 import GMLogo from "./gm.png";
 import Munchies_Tablet from "./Munchies_Tablet.png";
 import Cisco from "./cisco.png";
-import ThrivMockup from "./ThrivMockup.png";
-import Sentinel_Desktop from "./Sentinel_Desktop.png";
 import GoldmanLogo from "./goldman.png";
 import { Button } from "@/components/ui/button"
 import {
@@ -43,11 +41,11 @@ export default function Home() {
         // Dynamically calculate header height for accuracy
         const header = document.querySelector('header');
         const headerHeight = header ? header.offsetHeight : 80;
-        
+
         // Get element position relative to document using getBoundingClientRect for accuracy
         const elementPosition = ref.current.getBoundingClientRect().top + window.pageYOffset;
         const targetPosition = Math.max(0, elementPosition - headerHeight - 20); // Extra padding and ensure non-negative
-        
+
         // Check for smooth scrolling support and provide fallback
         if ('scrollBehavior' in document.documentElement.style) {
           window.scrollTo({
@@ -58,17 +56,17 @@ export default function Home() {
           // Fallback for older browsers
           window.scrollTo(0, targetPosition);
         }
-        
+
         // Development mode debugging
         if (process.env.NODE_ENV === 'development') {
           console.log(`Scrolling to section with header height: ${headerHeight}px, target position: ${targetPosition}px`);
         }
       } else {
         // Fallback to hash-based navigation if ref is not available
-        const sectionId = ref === experienceRef ? 'experience' : 
-                         ref === worksRef ? 'works' : 
-                         ref === contactRef ? 'contact' : null;
-        
+        const sectionId = ref === experienceRef ? 'experience' :
+          ref === worksRef ? 'works' :
+            ref === contactRef ? 'contact' : null;
+
         if (sectionId) {
           const element = document.getElementById(sectionId);
           if (element) {
@@ -76,12 +74,12 @@ export default function Home() {
             const headerHeight = header ? header.offsetHeight : 80;
             const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
             const targetPosition = Math.max(0, elementPosition - headerHeight - 20);
-            
+
             window.scrollTo({
               top: targetPosition,
               behavior: 'smooth'
             });
-            
+
             if (process.env.NODE_ENV === 'development') {
               console.log(`Fallback: Scrolled to section ${sectionId} using getElementById`);
             }
@@ -104,12 +102,12 @@ export default function Home() {
       if (process.env.NODE_ENV === 'development') {
         console.error('Error in scrollToRef:', error);
       }
-      
+
       // Try basic hash navigation as last resort
-      const sectionId = ref === experienceRef ? 'experience' : 
-                       ref === worksRef ? 'works' : 
-                       ref === contactRef ? 'contact' : null;
-      
+      const sectionId = ref === experienceRef ? 'experience' :
+        ref === worksRef ? 'works' :
+          ref === contactRef ? 'contact' : null;
+
       if (sectionId) {
         try {
           window.location.hash = sectionId;
@@ -186,7 +184,7 @@ export default function Home() {
       <StickyCursor />
       <main className={`${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-[#EAEAC2]'} relative w-full overflow-x-hidden transition-colors duration-300`}>
 
-        <Header 
+        <Header
           isDarkMode={isDarkMode}
           toggleDarkMode={toggleDarkMode}
           isMobileMenuOpen={isMobileMenuOpen}
@@ -274,7 +272,7 @@ export default function Home() {
                               </div>
                             </DrawerTitle>
                           </DrawerHeader>
-                          
+
                           <DrawerDescription className="px-6 pb-6">
                             <div className="space-y-4">
                               <div className="border-b pb-4 mb-4">
@@ -283,19 +281,19 @@ export default function Home() {
                                   <span className="text-sm text-[#433E0E] font-medium">Summer 2025</span>
                                 </h2>
                               </div>
-                              
+
                               <div className="space-y-4 text-base md:text-lg leading-relaxed">
                                 <p>• Developed a secure, scalable CSV report generation and download system for the Payroll Tax Calculator using Spring Boot, AWS ECS Fargate, Lambda, S3, and Aurora PostgreSQL.</p>
-                                
+
                                 <p>• Implemented dynamic Java-based formatting and zero-knowledge password encryption, cutting processing time by 60% and ensuring full audit compliance.</p>
-                                
+
                                 <p>• Led full-stack implementation of a U.S. Tax Reciprocity Rules Engine, designing OpenAPI-driven REST APIs and an accessible React + TypeScript UI for managing multi-state income tax exemptions.</p>
-                                
+
                                 <p>• Eliminated 95% of manual entries and reduced compliance errors to zero for managing 46,000 employees across 30+ countries.</p>
                               </div>
                             </div>
                           </DrawerDescription>
-                          
+
                           <DrawerFooter className="pt-4">
                             <DrawerClose>
                               <Button variant="outline" className="w-full">Close</Button>
@@ -335,7 +333,7 @@ export default function Home() {
                               </div>
                             </DrawerTitle>
                           </DrawerHeader>
-                          
+
                           <DrawerDescription className="px-6 pb-6">
                             <div className="space-y-6">
                               <div className="border-b pb-4 mb-4">
@@ -363,7 +361,7 @@ export default function Home() {
                               </div>
                             </div>
                           </DrawerDescription>
-                          
+
                           <DrawerFooter className="pt-4">
                             <DrawerClose>
                               <Button variant="outline" className="w-full">Close</Button>
@@ -402,7 +400,7 @@ export default function Home() {
                               </div>
                             </DrawerTitle>
                           </DrawerHeader>
-                          
+
                           <DrawerDescription className="px-6 pb-6">
                             <div className="space-y-4">
                               <div className="border-b pb-4 mb-4">
@@ -411,19 +409,19 @@ export default function Home() {
                                   <span className="text-sm text-[#433E0E] font-medium">January 2025 - April 2025</span>
                                 </h2>
                               </div>
-                              
+
                               <div className="space-y-4 text-base md:text-lg leading-relaxed">
                                 <p>• Worked with the Maintenance Window Service team to build resilient systems for scheduled network maintenance across Cisco&apos;s global infrastructure.</p>
-                                
+
                                 <p>• Spearheaded the refactoring of data ingestion systems to future-proof workflows and simplify modification processes as part of broader migration efforts within the organization.</p>
-                                
+
                                 <p>• Implemented improved error handling and monitoring for critical maintenance window operations, resulting in 15% reduction in failed maintenance events.</p>
-                                
+
                                 <p>• Collaborated with cross-functional teams to design flexible APIs that accommodate evolving data structures while maintaining backward compatibility.</p>
                               </div>
                             </div>
                           </DrawerDescription>
-                          
+
                           <DrawerFooter className="pt-4">
                             <DrawerClose>
                               <Button variant="outline" className="w-full">Close</Button>
@@ -441,7 +439,7 @@ export default function Home() {
                             <Image src={GMLogo} alt="GM" width={64} height={64} />
                             <div className="flex flex-col justify-start ml-6 flex-1 text-left">
                               <h1 className="text-2xl md:text-4xl font-bold text-left">General Motors</h1>
-                              <p className="text-sm md:text-base opacity-70 mb-2 text-left">EV Challenge Winner • 2023</p>
+                              <p className="text-sm md:text-base opacity-70 mb-2 text-left">EV Challenge Team Lead • 2024</p>
                               <div data-sticky className={`flex flex-row items-center w-fit h-fit ${isDarkMode ? 'text-[#433E0E]' : 'text-[#433E0E]'} group-hover:text-[#81901D] transition-colors`}>
                                 <svg width="20px" height="20px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="currentColor"></path> </g></svg>
                                 <p className="text-sm ml-1 font-medium">explore details</p>
@@ -462,26 +460,27 @@ export default function Home() {
                               </div>
                             </DrawerTitle>
                           </DrawerHeader>
-                          
+
                           <DrawerDescription className="px-6 pb-6">
                             <div className="space-y-4">
                               <div className="border-b pb-4 mb-4">
                                 <h2 className="text-lg md:text-xl font-semibold text-center">
-                                  Software Engineer (Connected and Autonomous Vehicles)
+                                  Software Engineer 
                                 </h2>
-                                <p className="text-sm text-[#433E0E] font-medium text-center mt-2">2023 Competition Winner</p>
+                                <p className="text-sm text-[#433E0E] font-medium text-center mt-2">Connected and Autonomous Vehicles Team Lead
+                                </p>
                               </div>
-                              
+
                               <div className="space-y-4 text-base md:text-lg leading-relaxed">
                                 <p>• Engineered advanced vehicle control algorithms using MathWorks MATLAB and Simulink, enhancing vehicle performance and energy efficiency, utilising dSPACE for simulations in order to validate strategy implementations.</p>
-                                
+
                                 <p>• Refined vast datasets from onboard sensors, applying Fourier and Wavelet transforms for noise reduction, leveraging Principal Component Analysis and t-distributed stochastic neighbour embedding (t-SNE) for data parsing with machine learning predictive models to glean insights into vehicle health and energy consumption.</p>
-                                
+
                                 <p>• Implemented efficiency-oriented solutions and innovations to address the challenges inherent in electric vehicles over the four-year EcoCar EV competition as part of the Connected and Autonomous Vehicles (CAVS) subteam.</p>
                               </div>
                             </div>
                           </DrawerDescription>
-                          
+
                           <DrawerFooter className="pt-4">
                             <DrawerClose>
                               <Button variant="outline" className="w-full">Close</Button>
@@ -532,60 +531,77 @@ export default function Home() {
             <p className="text-lg md:text-xl opacity-80">Some stuff I&apos;ve worked on 👨🏽‍💻</p>
           </div>
 
-          <div className="flex flex-col md:flex-row max-w-5xl m-auto justify-between md:mt-8 gap-4">
-            <div className="mt-8 md:mt-16">
-              <Image src={ThrivMockup} className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg" width={600} height={360} alt="Thriv" />
-            </div>
-            <div className="mt-6 md:mt-32 w-full flex flex-col md:items-end">
-              <h1 className="text-[#433E0E] font-black text-5xl md:text-7xl">01</h1>
-              <h1 className={`text-3xl md:text-5xl font-medium ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'}`}>Thriv</h1>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">- your personal fitness companion designed to help you dial in your fitness goals.</p>
-              <p className="text-lg md:text-xl  font-regular w-full md:w-4/5">- in development using React Native and Firebase<br /></p>
-              <div className="flex flex-row justify-start w-full md:w-4/5">
-                <Button data-sticky variant="outline" className="h-fit w-fit mt-5">
-                  <Link href={"https://thriv-app.vercel.app/"}> View Project</Link>
-                </Button>
-                <Button data-sticky variant="outline" className="mt-5 ml-3 h-fit w-fit">
-                  <Link href={"https://github.com/UchennaNjoku/Thriv"}>See Github</Link>
-                </Button>
+          <div className="max-w-5xl m-auto mt-8">
+            <div className="group">
+              <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
+                  <div className="flex-shrink-0">
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">01</h1>
+                  </div>
+                  <div className="flex flex-col justify-start flex-1">
+                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Thriv</h1>
+                    <p className="text-sm md:text-base opacity-70 mb-3">Your personal fitness companion designed to help you dial in your fitness goals.</p>
+                    <p className="text-sm md:text-base opacity-70 mb-4">In development using React Native and Firebase</p>
+                    <div className="flex flex-row gap-3">
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"https://thriv-app.vercel.app/"}>View Project</Link>
+                      </Button>
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"https://github.com/UchennaNjoku/Thriv"}>See Github</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
 
-          <div className="flex flex-col md:flex-row max-w-5xl m-auto justify-between md:mt-8 gap-4">
-            <div className="mt-6 md:mt-32 w-full md:py-14">
-              <h1 className="text-[#433E0E] font-black text-5xl md:text-7xl">02</h1>
-              <h1 className={`text-3xl md:text-5xl font-medium ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'}`}>Munchies Recipes</h1>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">- the recipe web app that helps you find the perfect recipe for any meal</p>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5">- Developed using React and TailwindCSS<br />- Leveraging the Spoonacular API to get results</p>
-              <Button data-sticky variant="outline" className="h-fit w-fit mt-5">
-                <Link href={"https://munchies-recipes.vercel.app/"}> View Project</Link>
-              </Button>
-              <Button data-sticky variant="outline" className="h-fit w-fit mt-5 ml-3">
-                <Link href={"https://github.com/UchennaNjoku/munchies-recipes"}>See Github</Link>
-              </Button>
-            </div>
-            <div className="mt-8 md:mt-16">
-              <Image src={Munchies_Tablet} className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg" width={600} height={360} alt="Munchies" />
+          <div className="max-w-5xl m-auto mt-8">
+            <div className="group">
+              <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
+                  <div className="flex-shrink-0">
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">02</h1>
+                  </div>
+                  <div className="flex flex-col justify-start flex-1">
+                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Munchies Recipes</h1>
+                    <p className="text-sm md:text-base opacity-70 mb-3">The recipe web app that helps you find the perfect recipe for any meal</p>
+                    <p className="text-sm md:text-base opacity-70 mb-4">Developed using React and TailwindCSS, leveraging the Spoonacular API to get results</p>
+                    <div className="flex flex-row gap-3">
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"https://munchies-recipes.vercel.app/"}>View Project</Link>
+                      </Button>
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"https://github.com/UchennaNjoku/munchies-recipes"}>See Github</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row max-w-5xl m-auto justify-between md:mt-8 gap-4">
-            <div className="mt-8 md:mt-16">
-              <Image src={Sentinel_Desktop} className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg" width={540} height={300} alt="Sentinel Staffing" />
-            </div>
-            <div className="mt-6 md:mt-32 w-full flex flex-col md:items-end">
-              <h1 className="text-[#433E0E] font-black text-7xl">03</h1>
-              <h1 className={`text-3xl md:text-5xl font-medium ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'}`}>Sentinel Staffing</h1>
-              <p className="text-lg md:text-xl font-regular w-full md:w-4/5 mt-3">- redesigned the web application portal for Sentinel Staffing Solutions. Developed using React and TailwindCSS</p>
-              <div className="flex flex-row justify-start w-full md:w-4/5">
-                <Button data-sticky variant="outline" className="h-fit w-fit mt-5">
-                  <Link href={"https://sentinel-staffing.vercel.app/"}> View Project</Link>
-                </Button>
-                <Button data-sticky variant="outline" className="h-fit w-fit mt-5 ml-3">
-                  <Link href={"https://github.com/UchennaNjoku/sentinel-staffing"}>See Github</Link>
-                </Button>
+          <div className="max-w-5xl m-auto mt-8">
+            <div className="group">
+              <div className="flex flex-col w-full min-h-[160px] p-6 rounded-lg border border-[#433E0E] border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-[1.02]">
+                <div className="flex flex-col md:flex-row items-start w-full h-full gap-6">
+                  <div className="flex-shrink-0">
+                    <h1 className="text-[#433E0E] font-black text-5xl md:text-6xl">03</h1>
+                  </div>
+                  <div className="flex flex-col justify-start flex-1">
+                    <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-[#EAEAC2]' : 'text-[#18020C]'} mb-2`}>Sentinel Staffing</h1>
+                    <p className="text-sm md:text-base opacity-70 mb-4">Redesigned the web application portal for Sentinel Staffing Solutions. Developed using React and TailwindCSS</p>
+                    <div className="flex flex-row gap-3">
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"https://sentinel-staffing.vercel.app/"}>View Project</Link>
+                      </Button>
+                      <Button data-sticky variant="outline" className="h-fit w-fit">
+                        <Link href={"https://github.com/UchennaNjoku/sentinel-staffing"}>See Github</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
