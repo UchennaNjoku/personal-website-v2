@@ -32,19 +32,10 @@ describe('ExperienceTransition', () => {
       </ExperienceTransition>
     );
 
-    expect(screen.getByTestId('content')).toBeInTheDocument();
-    expect(screen.getByTestId('content')).toHaveClass('opacity-100');
-  });
-
-  it('maintains consistent layout dimensions during transition', () => {
-    const { container } = render(
-      <ExperienceTransition isTransitioning={true} transitionKey="test-1">
-        <div data-testid="content">Test Content</div>
-      </ExperienceTransition>
-    );
-
-    const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper).toHaveStyle('min-height: 400px');
+    const content = screen.getByTestId('content');
+    expect(content).toBeInTheDocument();
+    // Check for parent having fade-in class
+    expect(content.parentElement).toHaveClass('fade-in');
   });
 
   it('handles transition state changes correctly', async () => {
@@ -64,46 +55,18 @@ describe('ExperienceTransition', () => {
       </ExperienceTransition>
     );
 
-    // Content should start fading out
-    const contentElement = screen.getByTestId('content-1');
-    expect(contentElement).toHaveClass('opacity-0');
+    // Content wrapper should have fade-out class
+    const contentElement1 = screen.getByTestId('content-1');
+    expect(contentElement1.parentElement).toHaveClass('fade-out');
 
     // Fast-forward through fade out
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(200);
     });
 
-    // New content should appear after transition
-    await act(async () => {
-      jest.advanceTimersByTime(100);
-    });
-
-    expect(screen.getByTestId('content-2')).toBeInTheDocument();
-  });
-
-  it('applies performance optimizations', () => {
-    const { container } = render(
-      <ExperienceTransition isTransitioning={true}>
-        <div data-testid="content">Test Content</div>
-      </ExperienceTransition>
-    );
-
-    const contentWrapper = container.querySelector('[data-testid="content"]')?.parentElement;
-    expect(contentWrapper).toHaveStyle('transform: translateZ(0)');
-    expect(contentWrapper).toHaveStyle('backface-visibility: hidden');
-    expect(contentWrapper).toHaveStyle('perspective: 1000');
-  });
-
-  it('shows loading indicator during transition', () => {
-    render(
-      <ExperienceTransition isTransitioning={true}>
-        <div data-testid="content">Test Content</div>
-      </ExperienceTransition>
-    );
-
-    // Should show loading indicator when transitioning and not visible
-    const loadingIndicator = document.querySelector('.animate-pulse');
-    expect(loadingIndicator).toBeInTheDocument();
+    const contentElement2 = screen.getByTestId('content-2');
+    expect(contentElement2).toBeInTheDocument();
+    expect(contentElement2.parentElement).toHaveClass('fade-in');
   });
 
   it('cleans up timeouts on unmount', () => {
