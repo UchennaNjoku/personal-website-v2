@@ -1,59 +1,52 @@
 "use client"
+import React from 'react';
+
 export default function Footer() {
     function toTop() {
-      window.scrollTo(0, 0)
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   
     return (
-      <footer className="mt-14 flex items-end justify-between px-5 py-4 sm:flex text-body-4 md:text-body-3">
-        <div className="flex flex-col md:flex-row md:w-[62.5vw] lg:w-[57.5vw] justify-between">
-          <div className="flex space-x-1" >
-            <span>&copy;</span>
-            <span>2024</span>
-            <span className="font-extrabold uppercase 2xl:text-body-1">Uchenna Njoku</span>
+      <footer className="relative mt-20 border-t border-neutral-800 bg-black text-white overflow-hidden">
+        {/* Decorative Grid Overlay */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+
+        <div className="relative z-10 px-6 py-12 md:py-20 max-w-8xl mx-auto flex flex-col md:flex-row justify-between items-end">
+          
+          <div className="flex flex-col space-y-6">
+            <div className="font-mono text-red-500 text-sm">END OF STREAM</div>
+            <h2 className="text-[12vw] leading-[0.8] font-black tracking-tighter uppercase select-none text-neutral-800 hover:text-neutral-700 transition-colors duration-500">
+              Uchenna
+            </h2>
           </div>
-          <div>
-            <span className=" text-body-4 2xl:text-body-1">Site designed and coded with ❤️‍🔥</span>
+
+          <div className="flex flex-col items-end space-y-8 mt-10 md:mt-0">
+            <button 
+                onClick={toTop}
+                className="group flex items-center space-x-4 hover:opacity-80 transition-opacity"
+            >
+              <span className="font-mono text-sm tracking-widest text-neutral-400 group-hover:text-red-500 transition-colors">INITIATE_ASCENT</span>
+              <div className="w-12 h-12 border border-neutral-700 flex items-center justify-center group-hover:bg-red-900/20 group-hover:border-red-500 transition-all">
+                <svg 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5"
+                    className="group-hover:-translate-y-1 transition-transform duration-300"
+                >
+                    <path d="M12 19V5M12 5L5 12M12 5L19 12" />
+                </svg>
+              </div>
+            </button>
+            
+            <div className="flex space-x-8 font-mono text-xs text-neutral-500">
+              <p>© 2024 UCHENNA NJOKU</p>
+              <p>DESIGNED & CODED // ❤️‍🔥</p>
+            </div>
           </div>
         </div>
-        <button onClick={toTop} className="col-span-2 flex items-center space-x-2 w-fit group 2xl:text-body-1">
-          <span className="font-extrabold uppercase hover:font-black duration-200">BACK TO TOP</span>
-          <span className="group-hover:-translate-y-3 duration-300 ease-in-out">
-            <svg
-              className="-rotate-90"
-              width="24"
-              height="24"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {" "}
-              <g clipPath="url(#clip0_238_1313)">
-                {" "}
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M4.37114e-06 2.76541e-06L7.54022e-06 50L100 100L2.18557e-06 150L0 200L100 150L100 200L200 150V100V50L100 0V50L4.37114e-06 2.76541e-06ZM100 50L100 100L100 150L200 100L100 50Z"
-                  fill="url(#paint0_linear_238_1313)"
-                />{" "}
-              </g>{" "}
-              <defs>
-                {" "}
-                <linearGradient
-                  id="paint0_linear_238_1313"
-                  x1="14"
-                  y1="26"
-                  x2="179"
-                  y2="179.5"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  {" "}
-                  <stop stopColor="#D1D1C7" />{" "}
-                </linearGradient>{" "}
-              </defs>{" "}
-            </svg>
-          </span>
-        </button>
       </footer>
     );
   }

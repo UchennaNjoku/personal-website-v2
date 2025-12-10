@@ -190,14 +190,9 @@ export default function StickyCursor() {
 
   return (
     <>
+      {/* The Magnetic Reticle */}
       <motion.div
-        transformTemplate={({
-          translateX,
-          translateY,
-          rotate,
-          scaleX,
-          scaleY,
-        }) =>
+        transformTemplate={({ translateX, translateY, rotate, scaleX, scaleY }) =>
           `translateX(${translateX}) translateY(${translateY}) rotate(${rotate}) scaleX(${scaleX}) scaleY(${scaleY})`
         }
         style={{
@@ -207,19 +202,25 @@ export default function StickyCursor() {
           translateY: "-50%",
           scaleX: pointerShadowScale.x,
           scaleY: pointerShadowScale.y,
-          rotate: pointerShadowAngle,
           pointerEvents: "none"
         }}
-        className="w-10 h-10 z-10 fixed bg-black rounded-full"
-        animate={{
-          width: cursorSize,
-          height: cursorSize,
-        }}
-      />
+        className="fixed z-50 pointer-events-none"
+      >
+         {/* This creates a hollow red square/circle target */}
+         <motion.div 
+            className="border border-red-500/50 rounded-full"
+            animate={{
+                width: cursorSize,
+                height: cursorSize,
+                backgroundColor: isHovered ? "rgba(220, 20, 60, 0.1)" : "transparent",
+            }}
+         />
+      </motion.div>
 
+      {/* The Center Dot */}
       <motion.div
         style={{ left: mouse.x, top: mouse.y, pointerEvents: "none" }}
-        className="w-2 h-2 z-10 fixed bg-white border-black -translate-x-1/2 -translate-y-1/2 border rounded-full"
+        className="w-1 h-1 z-50 fixed bg-red-500 -translate-x-1/2 -translate-y-1/2"
       />
     </>
   );

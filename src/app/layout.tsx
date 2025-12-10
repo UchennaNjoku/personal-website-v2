@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import React from "react";
-import StickyCursor from "@/components/StickyCursor";
 
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
-const inter = Inter({ subsets: ["latin"] });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: "Uchenna Njoku - Software Engineer",
@@ -18,11 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="theme-color" content="#000000" />
       </head>
-      <body className={`${inter.className} overflow-x-hidden`}> 
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-black text-white overflow-x-hidden antialiased`}>
         {children}
       </body>
     </html>

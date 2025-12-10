@@ -1,136 +1,104 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
-    /* Existing shadcn/ui variables */
-    --background: 60 25% 91%; /* #EAEAC2 */
-    --foreground: 320 75% 6%; /* #18020C */
-    --card: 60 25% 91%; /* #EAEAC2 */
-    --card-foreground: 320 75% 6%; /* #18020C */
-    --popover: 60 25% 91%; /* #EAEAC2 */
-    --popover-foreground: 320 75% 6%; /* #18020C */
-    --primary: 52 67% 16%; /* #433E0E */
-    --primary-foreground: 60 25% 91%; /* #EAEAC2 */
-    --secondary: 52 67% 16%; /* #433E0E */
-    --secondary-foreground: 60 25% 91%; /* #EAEAC2 */
-    --muted: 52 30% 30%;
-    --muted-foreground: 320 40% 20%;
-    --accent: 52 67% 16%; /* #433E0E */
-    --accent-foreground: 60 25% 91%; /* #EAEAC2 */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 25% 91%; /* #EAEAC2 */
-    --border: 52 30% 30%;
-    --input: 52 30% 30%;
-    --ring: 52 67% 16%; /* #433E0E */
-    --radius: 0.5rem;
-
-    /* Custom semantic color variables - Light Mode */
-    --text-primary: #18020C;
-    --text-secondary: rgba(24, 2, 12, 0.8);
-    --text-tertiary: rgba(24, 2, 12, 0.6);
-    --bg-primary: #EAEAC2;
-    --bg-secondary: #F5F5DC;
-    --bg-tertiary: #FAFAFA;
-    --border-primary: rgba(67, 62, 14, 0.2);
-    --border-secondary: rgba(67, 62, 14, 0.1);
-  }
- 
-  .dark {
-    /* Existing shadcn/ui variables */
-    --background: 0 0% 10%; /* #1A1A1A */
-    --foreground: 60 25% 91%; /* #EAEAC2 */
-    --card: 0 0% 10%; /* #1A1A1A */
-    --card-foreground: 60 25% 91%; /* #EAEAC2 */
-    --popover: 0 0% 10%; /* #1A1A1A */
-    --popover-foreground: 60 25% 91%; /* #EAEAC2 */
-    --primary: 52 67% 16%; /* #433E0E */
-    --primary-foreground: 60 25% 91%; /* #EAEAC2 */
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 60 25% 91%; /* #EAEAC2 */
+    /* Industrial Dark Theme - Primary */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 90%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 0 84% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
     --muted: 0 0% 15%;
-    --muted-foreground: 60 15% 70%;
-    --accent: 52 67% 16%; /* #433E0E */
-    --accent-foreground: 60 25% 91%; /* #EAEAC2 */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 25% 91%; /* #EAEAC2 */
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 52 67% 16%; /* #433E0E */
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 84% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 84% 40%;
+    --radius: 0.25rem;
+  }
 
-    /* Custom semantic color variables - Dark Mode */
-    --text-primary: #EAEAC2;
-    --text-secondary: rgba(234, 234, 194, 0.8);
-    --text-tertiary: rgba(234, 234, 194, 0.6);
-    --bg-primary: #1A1A1A;
-    --bg-secondary: #2A2A2A;
-    --bg-tertiary: #3A3A3A;
-    --border-primary: rgba(67, 62, 14, 0.3);
-    --border-secondary: rgba(67, 62, 14, 0.2);
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 90%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 0 84% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 84% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 84% 40%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* Industrial Grid Background */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Glitch/Pulse Effects */
+@keyframes pulse-glow-red {
+  0%, 100% { box-shadow: 0 0 10px rgba(220, 20, 60, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(220, 20, 60, 0.3); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.flicker {
+  animation: flicker 0.1s infinite;
 }
 
 /* Mobile touch optimization */
 @media (max-width: 768px) {
   * {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
   }
   
   button, a, [role="button"] {
-    -webkit-user-select: none;
-    user-select: none;
     touch-action: manipulation;
     cursor: pointer;
-    min-height: 48px;
-    min-width: 48px;
+    min-height: 44px;
   }
   
-  /* Ensure mobile menu is properly clickable */
-  .mobile-menu-item {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: rgba(67, 62, 14, 0.2);
-    pointer-events: auto !important;
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Header specific mobile fixes */
-  header {
-    position: relative;
-    z-index: 50;
-  }
-  
-  header button {
-    pointer-events: auto !important;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: rgba(67, 62, 14, 0.2);
-  }
-  
-  /* Mobile menu container fixes */
-  .mobile-menu-container {
-    position: fixed !important;
-    z-index: 99999 !important;
-    pointer-events: auto !important;
-    touch-action: manipulation;
-  }
-  
-  /* Prevent scroll when mobile menu is open */
   body.mobile-menu-open {
     overflow: hidden;
     position: fixed;
@@ -138,25 +106,27 @@
   }
 }
 
+/* Wave Animation */
 .waveanim {
-  animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
-  animation-duration: 2.5s;        /* Change to speed up or slow down */
-  animation-iteration-count: infinite;  /* Never stop waving :) */
-  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  animation-name: wave-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
   display: inline-block;
 }
 
 @keyframes wave-animation {
-    0% { transform: rotate( 0.0deg) }
-   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
-   20% { transform: rotate(-8.0deg) }
-   30% { transform: rotate(14.0deg) }
-   40% { transform: rotate(-4.0deg) }
-   50% { transform: rotate(10.0deg) }
-   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
-  100% { transform: rotate( 0.0deg) }
+  0% { transform: rotate(0.0deg) }
+  10% { transform: rotate(14.0deg) }
+  20% { transform: rotate(-8.0deg) }
+  30% { transform: rotate(14.0deg) }
+  40% { transform: rotate(-4.0deg) }
+  50% { transform: rotate(10.0deg) }
+  60% { transform: rotate(0.0deg) }
+  100% { transform: rotate(0.0deg) }
 }
 
+/* Float Animation */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
@@ -170,7 +140,7 @@
   animation-timing-function: ease-in-out;
 }
 
-/* Scroll indicator animations */
+/* Scroll Indicator */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -202,55 +172,70 @@
   animation: pulse-glow 2s infinite;
 }
 
-/* Gradient shift animation for "I build things" */
+/* Gradient Animation */
 @keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes subtle-pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .gradient-animate {
   background-size: 200% 200%;
-  animation: gradient-shift 4s ease-in-out infinite, subtle-pulse 3s ease-in-out infinite;
+  animation: gradient-shift 4s ease-in-out infinite;
 }
 
-/* Visual hierarchy improvements */
-.experience-highlight {
-  position: relative;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.experience-highlight:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(67, 62, 14, 0.15);
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
 }
 
-.experience-highlight::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(67, 62, 14, 0.05) 0%, rgba(67, 62, 14, 0.02) 100%);
-  border-radius: 0.75rem;
-  border: 1px solid rgba(67, 62, 14, 0.1);
-  z-index: -1;
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Hide scrollbar for navigation */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(220, 20, 60, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(220, 20, 60, 0.3);
+  color: white;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid rgba(220, 20, 60, 0.5);
+  outline-offset: 2px;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transition Utilities */
+.transition-industrial {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

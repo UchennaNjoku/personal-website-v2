@@ -1,6 +1,6 @@
 /**
  * ExperienceTransition CSS
- * Clean and smooth transition styles
+ * Industrial / High-Tech Style
  */
 
 .experience-transition-wrapper {
@@ -10,14 +10,43 @@
 
 .experience-transition-content {
   width: 100%;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateZ(0); /* Hardware acceleration */
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
 }
 
 .experience-transition-content.fade-out {
   opacity: 0;
+  transform: translateY(-10px);
 }
 
 .experience-transition-content.fade-in {
   opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scanline effect overlay */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(220, 20, 60, 0.03) 50%,
+    transparent 100%
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
 }

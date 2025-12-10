@@ -1,15 +1,10 @@
 /**
  * ExperienceNavigation Component
- * 
- * Renders numbered tab navigation (00, 01, 02, 03, 04) for the interactive experience section.
- * Features theme-aware styling, active tab highlighting, smooth hover transitions, and keyboard navigation.
- * 
- * Requirements: 1.1, 1.3, 1.4
+ * Style: Industrial / High-Tech
  */
 
 import React, { useCallback } from 'react';
 import { ExperienceNavigationProps } from '@/types/experience';
-import { useColors } from '@/hooks/useColors';
 import './ExperienceNavigation.css';
 
 const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
@@ -18,57 +13,32 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
   experienceCount,
   isDarkMode
 }) => {
-  const colors = useColors(isDarkMode);
-  // Handle keyboard navigation
+  // Handle keyboard navigation (kept logic, updated visual refs)
   const handleKeyDown = useCallback((event: React.KeyboardEvent, index: number) => {
     switch (event.key) {
       case 'ArrowLeft':
         event.preventDefault();
         const prevIndex = index > 0 ? index - 1 : experienceCount - 1;
         onTabClick(prevIndex);
-        // Focus the previous tab
-        setTimeout(() => {
-          const prevTab = document.getElementById(`experience-tab-${prevIndex}`);
-          prevTab?.focus();
-        }, 0);
+        setTimeout(() => document.getElementById(`experience-tab-${prevIndex}`)?.focus(), 0);
         break;
       case 'ArrowRight':
         event.preventDefault();
         const nextIndex = index < experienceCount - 1 ? index + 1 : 0;
         onTabClick(nextIndex);
-        // Focus the next tab
-        setTimeout(() => {
-          const nextTab = document.getElementById(`experience-tab-${nextIndex}`);
-          nextTab?.focus();
-        }, 0);
+        setTimeout(() => document.getElementById(`experience-tab-${nextIndex}`)?.focus(), 0);
         break;
       case 'Enter':
       case ' ':
         event.preventDefault();
         onTabClick(index);
         break;
-      case 'Home':
-        event.preventDefault();
-        onTabClick(0);
-        setTimeout(() => {
-          const firstTab = document.getElementById(`experience-tab-0`);
-          firstTab?.focus();
-        }, 0);
-        break;
-      case 'End':
-        event.preventDefault();
-        onTabClick(experienceCount - 1);
-        setTimeout(() => {
-          const lastTab = document.getElementById(`experience-tab-${experienceCount - 1}`);
-          lastTab?.focus();
-        }, 0);
-        break;
     }
   }, [onTabClick, experienceCount]);
 
   return (
     <nav 
-      className="flex items-center justify-center space-x-3 sm:space-x-5 md:space-x-7 mb-12 px-6 py-4 overflow-x-auto scrollbar-hide"
+      className="flex items-center justify-start space-x-1 sm:space-x-2 mb-12 px-2 py-4 overflow-x-auto scrollbar-hide border-b border-neutral-800/50"
       role="tablist"
       aria-label="Experience navigation"
     >
@@ -87,78 +57,39 @@ const ExperienceNavigation: React.FC<ExperienceNavigationProps> = ({
             onClick={() => onTabClick(index)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={`
-              experience-tab group relative px-4 py-3 sm:px-5 sm:py-4 font-mono text-lg sm:text-xl font-medium 
-              transition-all duration-500 ease-out hover:scale-105 hover:transform 
-              focus:outline-none focus:ring-2 focus:ring-offset-2
-              min-w-[50px] sm:min-w-[60px] min-h-[50px] sm:min-h-[60px] 
-              flex items-center justify-center flex-shrink-0 touch-manipulation
-              rounded-xl backdrop-blur-sm
+              group relative px-6 py-4 font-mono text-lg font-bold tracking-widest
+              transition-all duration-300 ease-out
+              min-w-[80px] sm:min-w-[100px] 
+              flex flex-col items-center justify-center flex-shrink-0
+              border border-transparent
+              rounded-sm outline-none
               ${isActive 
-                ? `experience-tab-active text-brand-secondary font-bold transform scale-105 shadow-xl` 
-                : `text-text-primary opacity-50 hover:opacity-90 hover:text-brand-secondary`
-              }
-              focus:ring-brand-secondary ${isDarkMode 
-                ? 'focus:ring-offset-bg-primary' 
-                : 'focus:ring-offset-bg-primary'
+                ? 'text-white' 
+                : 'text-neutral-500 hover:text-neutral-300 hover:bg-neutral-900/30'
               }
             `}
           >
-            {/* Number with subtle text shadow */}
-            <span className={`relative z-10 ${isActive ? 'drop-shadow-sm' : ''}`}>
+            {/* The Tab Number */}
+            <span className="relative z-10 text-xs text-neutral-500 mb-1 opacity-70">CASE_FILE</span>
+            <span className={`relative z-10 text-xl ${isActive ? 'text-red-500 shadow-red-500/50 drop-shadow-[0_0_8px_rgba(220,20,60,0.8)]' : ''}`}>
               {tabNumber}
             </span>
-            
-            {/* Active state background with gradient */}
-            <div
-              className={`
-                absolute inset-0 rounded-xl transition-all duration-500 ease-out -z-10
-                ${isActive 
-                  ? `bg-gradient-to-br ${isDarkMode 
-                      ? 'from-[#81901D]/15 via-[#81901D]/10 to-[#433E0E]/5' 
-                      : 'from-[#81901D]/12 via-[#81901D]/8 to-[#433E0E]/3'
-                    } shadow-xl shadow-[#81901D]/25 border border-[#81901D]/20` 
-                  : 'bg-transparent'
-                }
-              `}
-            />
-            
-            {/* Hover effect background */}
-            <div
-              className={`
-                absolute inset-0 rounded-xl transition-all duration-300 ease-out -z-20
-                ${!isActive 
-                  ? `bg-gradient-to-br ${isDarkMode 
-                      ? 'from-[#433E0E]/0 to-[#433E0E]/0 group-hover:from-[#433E0E]/8 group-hover:to-[#433E0E]/4' 
-                      : 'from-[#433E0E]/0 to-[#433E0E]/0 group-hover:from-[#433E0E]/6 group-hover:to-[#433E0E]/3'
-                    } group-hover:shadow-lg group-hover:shadow-[#433E0E]/15 group-hover:border group-hover:border-[#433E0E]/10` 
-                  : ''
-                }
-              `}
-            />
-            
-            {/* Subtle inner glow for active state */}
+
+            {/* Active Indicator Line (The "Laser" effect) */}
             {isActive && (
-              <div
-                className={`
-                  absolute inset-1 rounded-lg transition-all duration-500 ease-out -z-5
-                  bg-gradient-to-br ${isDarkMode 
-                    ? 'from-[#81901D]/5 to-transparent' 
-                    : 'from-[#81901D]/8 to-transparent'
-                  }
-                `}
-              />
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 shadow-[0_-2px_10px_rgba(220,20,60,0.8)]" />
             )}
             
-            {/* Focus indicator */}
-            <div
-              className={`
-                absolute inset-0 rounded-xl border-2 transition-all duration-300 ease-out -z-30
-                ${isActive 
-                  ? 'border-transparent' 
-                  : 'border-transparent focus-within:border-[#81901D] focus-within:border-opacity-60 focus-within:shadow-lg focus-within:shadow-[#81901D]/20'
-                }
-              `}
-            />
+            {/* Passive Hover Border */}
+            <div className={`absolute inset-0 border border-neutral-800 transition-opacity duration-300 ${isActive ? 'opacity-100 border-red-900/30 bg-red-950/10' : 'opacity-0 group-hover:opacity-100'}`} />
+
+            {/* Corner Accents (Technical markers) */}
+            {isActive && (
+              <>
+                <div className="absolute top-0 left-0 w-1 h-1 bg-red-500" />
+                <div className="absolute top-0 right-0 w-1 h-1 bg-red-500" />
+              </>
+            )}
           </button>
         );
       })}
