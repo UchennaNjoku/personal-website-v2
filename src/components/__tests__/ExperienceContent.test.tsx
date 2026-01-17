@@ -53,7 +53,6 @@ describe('ExperienceContent', () => {
       <ExperienceContent 
         experience={mockExperience}
         isDarkMode={false}
-        isVisible={true}
       />
     );
 
@@ -68,7 +67,6 @@ describe('ExperienceContent', () => {
       <ExperienceContent 
         experience={mockExperience}
         isDarkMode={false}
-        isVisible={true}
       />
     );
 
@@ -77,56 +75,16 @@ describe('ExperienceContent', () => {
     expect(screen.getByText('Third achievement demonstrating skills')).toBeInTheDocument();
   });
 
-  it('applies dark mode styling correctly', () => {
-    const { container } = render(
+  it('applies text styling correctly', () => {
+    render(
       <ExperienceContent 
         experience={mockExperience}
         isDarkMode={true}
-        isVisible={true}
       />
     );
 
     const companyName = screen.getByText('Test Company');
-    expect(companyName).toHaveClass('text-[#EAEAC2]');
-  });
-
-  it('applies light mode styling correctly', () => {
-    const { container } = render(
-      <ExperienceContent 
-        experience={mockExperience}
-        isDarkMode={false}
-        isVisible={true}
-      />
-    );
-
-    const companyName = screen.getByText('Test Company');
-    expect(companyName).toHaveClass('text-[#18020C]');
-  });
-
-  it('handles visibility state correctly', () => {
-    const { container } = render(
-      <ExperienceContent 
-        experience={mockExperience}
-        isDarkMode={false}
-        isVisible={false}
-      />
-    );
-
-    const mainContainer = container.firstChild as HTMLElement;
-    expect(mainContainer).toHaveClass('opacity-0');
-  });
-
-  it('shows visible content when isVisible is true', () => {
-    const { container } = render(
-      <ExperienceContent 
-        experience={mockExperience}
-        isDarkMode={false}
-        isVisible={true}
-      />
-    );
-
-    const mainContainer = container.firstChild as HTMLElement;
-    expect(mainContainer).toHaveClass('opacity-100');
+    expect(companyName).toHaveClass('text-text-primary');
   });
 
   it('renders sub-experiences when present', () => {
@@ -134,7 +92,6 @@ describe('ExperienceContent', () => {
       <ExperienceContent 
         experience={mockExperienceWithSub}
         isDarkMode={false}
-        isVisible={true}
       />
     );
 
@@ -144,17 +101,24 @@ describe('ExperienceContent', () => {
     expect(screen.getByText('Sub-role achievement 2')).toBeInTheDocument();
   });
 
-  it('does not render sub-experiences section when not present', () => {
-    render(
+  it('renders correct number of sections', () => {
+     render(
       <ExperienceContent 
         experience={mockExperience}
         isDarkMode={false}
-        isVisible={true}
       />
     );
 
     // Should only have one border-t class (for achievements section)
-    const borderElements = screen.getByText('Test Company').closest('div')?.querySelectorAll('.border-t');
+    // The main container has a border-t for achievements.
+    // We search for elements with 'border-t' class within the container.
+    // Note: ExperienceContent component structure:
+    // div > div.space-y-6 >
+    //   div (header)
+    //   div.border-t (achievements)
+    //   div.border-t (sub-experiences - optional)
+
+    const borderElements = document.querySelectorAll('.border-t');
     expect(borderElements).toHaveLength(1);
   });
 });
