@@ -1,22 +1,39 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import React from "react";
+import Cursor from "@/components/Cursor";
 
-const inter = Inter({ 
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Uchenna Njoku - Software Engineer",
-  description: "Software Engineering Portfolio of Uchenna Njoku",
+  title: "Uchenna Njoku — Software Engineer",
+  description:
+    "Software engineer at Bloomberg and researcher in multi-agent reinforcement learning. Previously Goldman Sachs, Cisco · Splunk and Amazon Web Services.",
 };
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#090c14" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fc" },
+  ],
+};
+
+// Runs before paint so the saved or system theme applies without a flash.
+const themeScript = `try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t}catch(e){}
+// Scroll-reveal hides content only once scripts are confirmed running; if they never
+// start, unhide everything instead of leaving a blank page.
+var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.dataset.reveal='';setTimeout(function(){if(!window.__revealReady)delete d.dataset.reveal},2500)}`;
 
 export default function RootLayout({
   children,
@@ -24,13 +41,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-black text-white overflow-x-hidden antialiased`}>
+      <body className={`${plexSans.variable} ${plexMono.variable} bg-canvas font-sans text-paper antialiased`}>
         {children}
+        <Cursor />
       </body>
     </html>
   );
